@@ -24,7 +24,12 @@ if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting
 fi
 
 zle_highlight=('paste:none')
-source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
+if [ -f /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
+fi
+if [ -f /usr/share/zsh/plugins/zsh-autopair/autopair.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autopair/autopair.zsh
+fi
 
 
 HISTFILE=~/.zsh_history
