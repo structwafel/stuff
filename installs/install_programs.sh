@@ -40,6 +40,10 @@ programs=(
     "wofi-emoji"
     "zsh-autosuggestions"
     "zsh-completions"
+    "zsh-autopair-git"
+    "atuin"
+    "starship"
+    "zoxide"
 )
 
 
