@@ -1,8 +1,3 @@
-# server things only.
+stow dotfiles
 
-# stow .fonts and zsh instead of all dotfiles
-
-stow dotfiles/.fonts
-stow dotfiles/.zshrc
-stow dotfiles/.zshenv
-stow dotfiles/.zsh_keybindings
+./installs/install_server_things\.sh

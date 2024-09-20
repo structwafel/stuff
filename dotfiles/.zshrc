@@ -17,7 +17,7 @@ export PATH=$PATH:$HOME/go/bin
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 zle_highlight=('paste:none')
-# source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
 
 
 HISTFILE=~/.zsh_history
@@ -26,7 +26,7 @@ SAVEHIST=10000
 setopt SHARE_HISTORY
 
 # keybindings
-# source  /home/lgx/.zsh_keybindings
+source  /home/lgx/.zsh_keybindings
 
 # Load zsh completion.
 autoload -Uz compinit && compinit

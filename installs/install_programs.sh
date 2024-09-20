@@ -1,5 +1,6 @@
 programs=(
     "git"
+    "zsh"
     "eza"
     "micro"
     "fzf"
@@ -8,6 +9,8 @@ programs=(
     "wofi"
     "visual-studio-code-bin"
 )
+
+
 
 for program in "${programs[@]}"; do
     if ! pacman -Q $program &> /dev/null; then
