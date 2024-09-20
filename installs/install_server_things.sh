@@ -1,7 +1,7 @@
 
 sudo apt-get update
 
-programs = (
+programs=(
     "curl"
     "build-essential"
     "gcc"
