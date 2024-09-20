@@ -15,7 +15,14 @@ export PATH=$PATH:$HOME/go/bin
 
 # plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# if /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh exist
+if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh ]; then
+    source /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
+fi
+if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
+    source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+fi
+
 zle_highlight=('paste:none')
 source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
 
