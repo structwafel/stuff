@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install dev things
 
 # install go

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 programs=(
     "git"
     "stow"
