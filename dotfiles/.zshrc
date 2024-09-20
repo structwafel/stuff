@@ -91,7 +91,10 @@ alias l="eza -l --icons --git -a --hyperlink"
 alias lt="eza --tree --level=2 --long --icons --git --hyperlink"
 alias ltree="eza --tree --level=2  --icons --git --hyperlink"
 
+alias cat=bat
+
 alias cr="clear"
+# such that ctrl+shift+p y works in kitty
 alias ls="eza --hyperlink"
 alias ll="eza -l --hyperlink"
 alias lll="eza -la --hyperlink"
