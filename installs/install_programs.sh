@@ -1,5 +1,6 @@
 programs=(
     "git"
+    "stow"
     "zsh"
     "eza"
     "micro"

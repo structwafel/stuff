@@ -12,6 +12,7 @@ programs = (
     "micro"
     "fzf"
     "tree"
+    "stow"
 )
 
 for program in "${programs[@]}"; do
