@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update package list and install Git
-sudo pacmac -Syu
+sudo pacman -Syu
 sudo pacman -S git
 
 # Clone the repository
