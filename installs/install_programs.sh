@@ -41,9 +41,11 @@ programs=(
     "zsh-autosuggestions"
     "zsh-completions"
     "zsh-autopair-git"
+    "zsh-fast-syntax-highlighting"
     "atuin"
     "starship"
     "zoxide"
+    "less"
 )
 
 
