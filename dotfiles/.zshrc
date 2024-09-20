@@ -26,7 +26,7 @@ SAVEHIST=10000
 setopt SHARE_HISTORY
 
 # keybindings
-source  /home/lgx/.zsh_keybindings
+source  $HOME/.zsh_keybindings
 
 # Load zsh completion.
 autoload -Uz compinit && compinit
