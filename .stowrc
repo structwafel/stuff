@@ -1,4 +1,3 @@
 --target=~
 --ignore=.stowrc
---ignore=stowstuff.sh
 --ignore=DS_Store
