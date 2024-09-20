@@ -1,3 +1,3 @@
-./installs/install_server_things\.sh
+./installs/install_server_things.sh
 
 stow dotfiles
