@@ -45,9 +45,9 @@ programs=(
 
 
 for program in "${programs[@]}"; do
-    if ! pacman -QS $program &> /dev/null; then
+    if ! pacman -Q $program &> /dev/null; then
         echo "Installing $program"
-        yay -S $program
+        yay -S --noconfirm $program
     else
         echo "$program already installed"
     fi
