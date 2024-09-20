@@ -30,9 +30,10 @@ sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/p
 sudo git clone https://github.com/zdharma/fast-syntax-highlighting.git /usr/share/zsh/plugins/fast-syntax-highlighting
 sudo git clone https://github.com/hlissner/zsh-autopair.git /usr/share/zsh/plugins/zsh-autopair
 
-# atuin and startship
+# atuin and startship and zoxide
 curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | sh
 curl -sS https://starship.rs/install.sh | sh
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # install eza
 sudo mkdir -p /etc/apt/keyrings
