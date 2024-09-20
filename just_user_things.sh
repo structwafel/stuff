@@ -3,3 +3,5 @@
 ./installs/install_programs.sh
 
 stow dotfiles --adopt
+
+chsh -s $(which zsh)
