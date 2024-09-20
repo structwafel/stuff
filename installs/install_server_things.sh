@@ -15,6 +15,10 @@ programs=(
     "stow"
     "wget"
     "gpg"
+    "bat"
+    "ripgrep"
+    "tokei"
+    "tree"
 )
 
 for program in "${programs[@]}"; do
@@ -31,9 +35,12 @@ sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/p
 sudo git clone https://github.com/zdharma/fast-syntax-highlighting.git /usr/share/zsh/plugins/fast-syntax-highlighting
 sudo git clone https://github.com/hlissner/zsh-autopair.git /usr/share/zsh/plugins/zsh-autopair
 
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.atuin/bin:$PATH
+
 # atuin and startship and zoxide
 curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | sh
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -s -- --yes
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # install eza
