@@ -1,0 +1,12 @@
+#window {
+    font-size: 16px;
+    font-family: "Noto Sans", monospace;
+    background-color: rgba(50, 50, 50, 0.9);
+    padding: 40px;
+}
+
+#input {
+    font-size: 16px;
+    font-family: "Noto Sans", monospace;
+    background-color: rgba(50, 50, 50, 0.9);
+}
