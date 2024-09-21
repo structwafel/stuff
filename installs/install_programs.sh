@@ -46,6 +46,7 @@ programs=(
     "starship"
     "zoxide"
     "less"
+    "cliphist"
 )
 
 

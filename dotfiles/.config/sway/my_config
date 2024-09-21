@@ -90,3 +90,9 @@ bindsym $mod+l [app_id="MyWezTerm"] scratchpad show,resize set 1800 1200
 # exec_always "protonvpn-app"
 # for_window [app_id="protonvpn-app"] move scratchpad
 # bindsym $mod+v [app_id="protonvpn-app"] scratchpad show
+
+
+input type:keyboard {
+    repeat_delay 200
+    repeat_rate 30
+}
