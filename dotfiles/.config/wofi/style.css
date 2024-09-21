@@ -10,3 +10,9 @@
     font-family: "Noto Sans", monospace;
     background-color: rgba(50, 50, 50, 0.9);
 }
+
+#text {
+    font-size: 16px;
+    font-family: "Noto Sans", monospace;
+    color: aliceblue;
+}
