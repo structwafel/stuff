@@ -58,7 +58,14 @@ setopt auto_cd
 
 export EDITOR="micro"
 
+
+
 # aliases
+# if kitty is terminal, use kitty +kitten ssh
+if [ "$TERM" = "xterm-kitty" ]; then
+    alias ssh="kitten ssh"
+fi
+
 # Git
 alias gc="git commit -m"
 alias gca="git commit -a -m"
@@ -115,6 +122,7 @@ alias m=micro
 # CLERK THINGS
 alias start_clerk_vpn="openvpn3 session-start --config ~/.ssh/client.ovpn"
 alias stop_clerk_vpn="openvpn3 session-manage --config ~/.ssh/client.ovpn --disconnect"
+alias sshclerk="ssh -i ~/.ssh/clerkdev2 lni@dev-luca.clerk.network"
 
 # functions
 brightness() {
