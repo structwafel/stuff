@@ -1,17 +1,9 @@
-# Created by newuser for 5.8
-
-# env stuff
-export ELECTRON_OZONE_PLATFORM_HINT=wayland
-
-
 # ssh agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval "$(ssh-agent -s)" > /dev/null
 fi
 ssh-add ~/.ssh/github2 > /dev/null 2>&1
 
-# paths
-export PATH=$PATH:$HOME/go/bin
 
 # plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
