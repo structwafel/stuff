@@ -27,7 +27,7 @@ exec --no-startup-id solaar --window=hide
 for_window [app_id="flaqmeshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-bindsym Print exec flameshot gui
+bindsym Print exec slurp | grim -g - - | wl-copy
 
 # don't idle when audio is playing
 # https://github.com/ErikReider/SwayAudioIdleInhibit
@@ -102,6 +102,15 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 exec_always ~/.config/sway/clamshellmode.sh
 
+
+exec_always {
+    if swaymsg -t get_outputs | grep -q 'DP-1'; then
+        if swaymsg -t get_outputs | grep -q 'HDMI-A-1'; then
+            swaymsg output DP-1 pos 0 0 res 1920x1080@120Hz
+            swaymsg output HDMI-A-1 pos 1920 0 res 1920x1080@120Hz
+        fi
+    fi
+}
 
 # scroll speed
 input type:pointer {

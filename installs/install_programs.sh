@@ -19,6 +19,7 @@ programs=(
     "flameshot" 
     # stuff for flameshot
     "xdg-desktop-portal"
+    "xdg-desktop-portal-gnome"
     "xdg-desktop-portal-wlr"
     "grim"
     "slurp"
