@@ -71,20 +71,7 @@ bindsym $mod+o exec 'swaylock --clock --indicator --color 000000 --datestr "%a %
 exec_always nm-applet --indicator
 
 
-#youtube music scratchpad
-exec_always "youtube-music"
-for_window [class="YouTube Music"] move scratchpad
-bindsym $mod+m [class="YouTube Music"] scratchpad show
 
-#signal scratchpad
-exec_always "signal-desktop"
-for_window [class="Signal"] move scratchpad
-bindsym $mod+r [class="Signal"] scratchpad show
-
-#terminal scratchpad
-exec_always "wezterm start --class MyWezTerm"
-for_window [app_id="MyWezTerm"] move scratchpad
-bindsym $mod+l [app_id="MyWezTerm"] scratchpad show,resize set 1800 1200
 
 #protonvpn
 # exec_always "protonvpn-app"
@@ -116,3 +103,21 @@ exec_always {
 input type:pointer {
     scroll_factor 1.2
 }
+
+
+## if not an the bottom, it doesn't work}
+
+#youtube music scratchpad
+exec_always "youtube-music"
+for_window [app_id="YouTube Music"] move scratchpad
+bindsym $mod+m [app_id="YouTube Music"] scratchpad show,resize set 1800 1200,move position center
+
+#signal scratchpad
+exec_always "signal-desktop"
+for_window [app_id="signal"] move scratchpad
+bindsym $mod+r [app_id="signal"] scratchpad show,resize set 1800 1200,move position center
+
+#terminal scratchpad
+exec_always "kitty --class mykitty ~/"
+for_window [app_id="mykitty"] move scratchpad
+bindsym $mod+l [app_id="mykitty"] scratchpad show,resize set 1800 1200,move position center
