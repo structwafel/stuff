@@ -48,6 +48,7 @@ programs=(
     "zoxide"
     "less"
     "cliphist"
+    "swaylock-effects"
 )
 
 
