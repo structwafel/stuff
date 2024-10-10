@@ -67,6 +67,7 @@ alias gst="git status"
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias gdiff="git diff"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gb='git branch'
 alias gba='git branch -a'
 alias gadd='git add'
