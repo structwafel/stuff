@@ -76,6 +76,12 @@ alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
 
+timo() {
+    gadd .
+    gc "$1"
+    gp
+}
+
 # Docker
 alias dco="docker compose"
 alias dps="docker ps"
