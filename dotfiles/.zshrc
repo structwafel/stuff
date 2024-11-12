@@ -139,12 +139,15 @@ jjp () {
     cd "${1:-.}/$(find . -maxdepth 5 -type d -name .git -not -path '*/.cache/*' | sed 's|/.git$||' | fzf --preview 'tree -L 2 ./{}')"
 }
 # change java version to 11 in arch for this session
-java11(){
-    # sudo archlinux-java set java-11-openjdk
-    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+setjava(){
+    if [ -z "$1" ]; then
+        echo "Usage: setjava <version>"
+        return 1
+    fi
+    export JAVA_HOME=/usr/lib/jvm/java-"$1"-openjdk
     export PATH=$JAVA_HOME/bin:$PATH
+    echo "Java version set to $1"
 }
-
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
