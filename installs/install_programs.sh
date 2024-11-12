@@ -49,6 +49,10 @@ programs=(
     "less"
     "cliphist"
     "swaylock-effects"
+    "blueman"
+    "bluez"
+    "bluez-utils"
+    "network-manager-applet"
 )
 
 

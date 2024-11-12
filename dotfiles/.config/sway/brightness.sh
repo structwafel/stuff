@@ -31,8 +31,17 @@ elif [ $new_brightness -lt 0 ]; then
     new_brightness=0
 fi
 
-# Set the new brightness using gbmonctl
-sudo ~/go/bin/gbmonctl -prop brightness -val $new_brightness
-# sudo /home/lgx/.config/sway/set-brightness.sh $new_brightness
-# Update the brightness file
-echo $new_brightness > "$BRIGHTNESS_FILE"
+name=$(uname -n)
+
+# brightnessctl doesn't work on dumb monitors
+if [ "$name" = "archswayhome" ]; then
+    # brightness $new_brightness
+    # Set the new brightness using gbmonctl
+    sudo ~/go/bin/gbmonctl -prop brightness -val "$new_brightness"
+    # sudo /home/lgx/.config/sway/set-brightness.sh "$new_brightness"
+    # Update the brightness file
+else
+    brightnessctl s $new_brightness
+fi
+
+echo "$new_brightness" > "$BRIGHTNESS_FILE"

@@ -20,12 +20,3 @@ export PATH=$PATH:$HOME/go/bin
 
 . "$HOME/.cargo/env"
 
-
-# Set different environment variables based on the hostname
-if [ "$(uname -n)" = "lniclerk" ]; then
-    export SCRATCHPAD_HEIGHT=600
-    export SCRATCHPAD_WIDTH=800
-elif [ "$(uname -n)" = "archswayhome" ]; then
-    export SCRATCHPAD_HEIGHT=1200
-    export SCRATCHPAD_WIDTH=1000
-fi

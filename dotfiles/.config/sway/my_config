@@ -115,18 +115,7 @@ input type:pointer {
 
 
 ## if not an the bottom, it doesn't work}
-
-#youtube music scratchpad
-exec_always "youtube-music"
-for_window [app_id="YouTube Music"] move scratchpad
-bindsym $mod+m [app_id="YouTube Music"] scratchpad show,resize set $SCRATCHPAD_WIDTH $SCRATCHPAD_HEIGHT,move position center
-
-#signal scratchpad
-exec_always "signal-desktop"
-for_window [app_id="signal"] move scratchpad
-bindsym $mod+r [app_id="signal"] scratchpad show,resize set $SCRATCHPAD_WIDTH $SCRATCHPAD_HEIGHT,move position center
-
-#terminal scratchpad
-exec_always "kitty --class mykitty ~/"
-for_window [app_id="mykitty"] move scratchpad
-bindsym $mod+l [app_id="mykitty"] scratchpad show,resize set $SCRATCHPAD_WIDTH $SCRATCHPAD_HEIGHT,move position center
+# generate sway config file
+exec_always --no-startup-id ~/.config/sway/set_sway_config.sh
+# and include it
+include ~/.config/sway/generated_config

@@ -7,3 +7,8 @@
 stow dotfiles --adopt
 
 chsh -s $(which zsh)
+
+
+# start bluetooth service
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service

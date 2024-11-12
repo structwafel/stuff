@@ -4,7 +4,6 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 ssh-add ~/.ssh/github2 > /dev/null 2>&1
 
-
 # plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # if /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh exist
