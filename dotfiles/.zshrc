@@ -164,11 +164,11 @@ sync_to_remote() {
   ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p $REMOTE_DIR"
 
   # Initial sync
-  rsync -avz "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
+  rsync -avz --exclude 'venv' --exclude '.venv' "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
 
   # Watch for changes and sync in the background
   (while inotifywait -r -e modify,create,delete "$LOCAL_DIR" > /dev/null 2>&1; do
-    rsync -avz "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR" > /dev/null 2>&1
+    rsync -avz --exclude 'venv' --exclude '.venv' "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR" > /dev/null 2>&1
   done) &
 
   # Save the PID of the background process
