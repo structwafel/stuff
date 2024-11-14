@@ -149,6 +149,77 @@ setjava(){
     echo "Java version set to $1"
 }
 
+sync_to_remote() {
+  local LOCAL_DIR=$(pwd)
+  local REMOTE_DIR="/home/lni/git/$(basename $LOCAL_DIR)"
+  local REMOTE_USER="lni"
+  local REMOTE_HOST="dev"
+  local SYNC_LOG_DIR="$HOME/.sync_logs"
+  local SYNC_LOG_FILE="$SYNC_LOG_DIR/$(basename $LOCAL_DIR).pid"
+
+  # Ensure the log directory exists
+  mkdir -p "$SYNC_LOG_DIR"
+
+  # Ensure the remote directory exists
+  ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p $REMOTE_DIR"
+
+  # Initial sync
+  rsync -avz "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
+
+  # Watch for changes and sync in the background
+  (while inotifywait -r -e modify,create,delete "$LOCAL_DIR" > /dev/null 2>&1; do
+    rsync -avz "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR" > /dev/null 2>&1
+  done) &
+
+  # Save the PID of the background process
+  echo $! > "$SYNC_LOG_FILE"
+}
+
+list_syncs() {
+  local SYNC_LOG_DIR="$HOME/.sync_logs"
+
+  if [ -d "$SYNC_LOG_DIR" ]; then
+    echo "Running sync processes:"
+    for pid_file in "$SYNC_LOG_DIR"/*.pid; do
+      if [ -f "$pid_file" ]; then
+        local pid=$(cat "$pid_file")
+        if ps -p "$pid" > /dev/null; then
+          echo "Sync process for $(basename "$pid_file" .pid): PID $pid"
+        else
+          echo "Stale PID file: $(basename "$pid_file" .pid)"
+          rm "$pid_file"
+        fi
+      fi
+    done
+  else
+    echo "No sync processes running."
+  fi
+}
+
+stop_sync() {
+  local SYNC_LOG_DIR="$HOME/.sync_logs"
+  local DIR_NAME=$(basename "$1")
+  local SYNC_LOG_FILE="$SYNC_LOG_DIR/$DIR_NAME.pid"
+
+  if [ -f "$SYNC_LOG_FILE" ]; then
+    local PID=$(cat "$SYNC_LOG_FILE")
+    if ps -p "$PID" > /dev/null; then
+      kill "$PID"
+      echo "Stopped sync process for $DIR_NAME (PID $PID)"
+      rm "$SYNC_LOG_FILE"
+    else
+      echo "No running sync process found for $DIR_NAME"
+      rm "$SYNC_LOG_FILE"
+    fi
+  else
+    echo "No sync process found for $DIR_NAME"
+  fi
+}
+
+alias sync=sync_to_remote
+alias syncs=list_syncs
+alias stopsync=stop_sync
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
