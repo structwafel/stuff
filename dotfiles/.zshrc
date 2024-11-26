@@ -115,6 +115,11 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
+# nvim things
+n(){
+    cd $1 && nvim .
+}
+
 alias m=micro
 
 # CLERK THINGS
