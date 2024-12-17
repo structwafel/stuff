@@ -1,8 +1,8 @@
 #!/bin/bash
 
-hostname=$(hostname)
+hostname=$(cat /etc/hostname)
 
-if [ "$hostname" = "lniclerk" ]; then
+if [ "$hostname" = "xpslaptop" ]; then
     cat <<EOF > ~/.config/sway/generated_config
 exec_always "youtube-music"
 for_window [app_id="YouTube Music"] move scratchpad
