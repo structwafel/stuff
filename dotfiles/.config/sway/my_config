@@ -71,7 +71,7 @@ bindsym $mod+o exec 'swaylock --clock --indicator --color 000000 --datestr "%a %
 exec_always nm-applet --indicator
 
 
-
+output "DP-1" allow_tearing yes 
 
 #protonvpn
 # exec_always "protonvpn-app"
@@ -109,9 +109,9 @@ exec_always {
 }
 
 # scroll speed
-input type:pointer {
-    scroll_factor 1.2
-}
+# input type:pointer {
+#     scroll_factor 1.2
+# }
 
 
 ## if not an the bottom, it doesn't work}

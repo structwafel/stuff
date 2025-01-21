@@ -225,7 +225,16 @@ alias sync=sync_to_remote
 alias syncs=list_syncs
 alias stopsync=stop_sync
 
+# if bun exists, source it
+[ -s "/home/lgx/.bun/_bun" ] && source "/home/lgx/.bun/_bun"
+
+
+gotest() {
+  local pattern=$1
+  shift
+  go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "^?"
+}
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
-
