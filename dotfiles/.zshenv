@@ -18,5 +18,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 # go things
 export PATH=$PATH:$HOME/go/bin
 
+# bun things
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 . "$HOME/.cargo/env"
 

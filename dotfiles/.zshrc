@@ -251,7 +251,25 @@ chyo_login() {
     fi
 }
 
+# if bun exists, source it
+[ -s "/home/lgx/.bun/_bun" ] && source "/home/lgx/.bun/_bun"
+
+
+gt() {
+  if [ -z "${1:-}" ]; then
+    go test ./... 2>&1 | grep -v "\[no test" | grep -v "(cached)" | grep -v "^?"
+  else
+    local pattern=$1
+    shift
+    go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "^?"
+  fi
+}
+
+gtw() {
+  local pattern=$1
+  watchexec "go test ./... -run=\"(?i)$pattern\" -count=1 2>&1 | grep -v \"\[no test\" | grep -v \"^?\""
+}
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
-
