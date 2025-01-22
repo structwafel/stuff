@@ -225,6 +225,32 @@ alias sync=sync_to_remote
 alias syncs=list_syncs
 alias stopsync=stop_sync
 
+
+# chyo stuff
+chyo_login() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: chyo_login <email> <password>"
+        return 1
+    fi
+
+    api_host="api.core.chyo.localhost"
+    
+    response=$(curl -s -X POST "http://$api_host/auth/login" \
+        -H "Content-Type: application/json" \
+        -d "{\"email\": \"$1\", \"password\": \"$2\"}" \
+        -i)
+    
+    echo "Raw response:"
+    echo "$response"
+    
+    if [ -n "$response" ]; then
+        echo "$response" | grep -i "set-cookie" | grep "chyo_auth_token" | cut -d"=" -f2 | cut -d";" -f1
+    else
+        echo "Error: No response from server"
+        return 1
+    fi
+}
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
