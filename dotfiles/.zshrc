@@ -229,10 +229,19 @@ alias stopsync=stop_sync
 [ -s "/home/lgx/.bun/_bun" ] && source "/home/lgx/.bun/_bun"
 
 
-gotest() {
+gt() {
+  if [ -z "${1:-}" ]; then
+    go test ./... 2>&1 | grep -v "\[no test" | grep -v "(cached)" | grep -v "^?"
+  else
+    local pattern=$1
+    shift
+    go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "^?"
+  fi
+}
+
+gtw() {
   local pattern=$1
-  shift
-  go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "^?"
+  watchexec "go test ./... -run=\"(?i)$pattern\" -count=1 2>&1 | grep -v \"\[no test\" | grep -v \"^?\""
 }
 
 eval "$(starship init zsh)"
