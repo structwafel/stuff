@@ -22,5 +22,14 @@ export PATH=$PATH:$HOME/go/bin
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# android things
+export JAVA_HOME=/opt/android-studio/jbr
+export ANDROID_HOME="$HOME/Android/Sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk | sort -V | tail -n 1)"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+
+# flutter things
+export PATH="$PATH:$HOME/flutter/flutter/bin"
+
 . "$HOME/.cargo/env"
 
