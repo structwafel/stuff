@@ -86,7 +86,6 @@ alias dco="docker compose"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
-alias dx="docker exec -it"
 
 # Dirs
 alias ..="cd .."
@@ -261,13 +260,13 @@ gt() {
   else
     local pattern=$1
     shift
-    go test ./... -run="(?i)$pattern" "$@" 2>&1 | grep -v "\[no test" | grep -v "^?"
+    go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "(cached)" | grep -v "^?"
   fi
 }
 
 gtw() {
   local pattern=$1
-  watchexec "go test ./... -run=\"(?i)$pattern\" 2>&1 | grep -v \"\[no test\" | grep -v \"^?\""
+  watchexec "go test ./... -run=\"(?i)$pattern\" 2>&1 | grep -v \"\[no test\" | grep -v \"(cached)\" | grep -v \"^?\""
 }
 
 eval "$(starship init zsh)"
