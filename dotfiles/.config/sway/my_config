@@ -29,6 +29,12 @@ exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
 exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 bindsym Print exec slurp | grim -g - - | wl-copy
 
+
+# kunkun stuff
+for_window [app_id="kunkun"] floating enable
+for_window [app_id="kunkun"] move absolute position center
+bindsym $mod+K exec "kunkun toggle"
+
 # don't idle when audio is playing
 # https://github.com/ErikReider/SwayAudioIdleInhibit
 exec sway-audio-idle-inhibit
