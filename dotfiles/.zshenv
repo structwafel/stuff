@@ -5,6 +5,9 @@ export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
+# idk pam/sway/ly/systemd enviroment variables/ everything doesn't work as expected.
+# so setting this manually 
+export SSH_AUTH_SOCK=/run/user/1000/gcr/ssh
 
 #add .local/bin to path
 export PATH=$HOME/.local/bin:$PATH
