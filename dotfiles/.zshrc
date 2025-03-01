@@ -1,9 +1,3 @@
-# ssh agent
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval "$(ssh-agent -s)" > /dev/null
-fi
-ssh-add ~/.ssh/github2 > /dev/null 2>&1
-
 # plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # if /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh exist
@@ -153,102 +147,7 @@ setjava(){
     echo "Java version set to $1"
 }
 
-sync_to_remote() {
-  local LOCAL_DIR=$(pwd)
-  local REMOTE_DIR="/home/lni/git/$(basename $LOCAL_DIR)"
-  local REMOTE_USER="lni"
-  local REMOTE_HOST="dev"
-  local SYNC_LOG_DIR="$HOME/.sync_logs"
-  local SYNC_LOG_FILE="$SYNC_LOG_DIR/$(basename $LOCAL_DIR).pid"
 
-  # Ensure the log directory exists
-  mkdir -p "$SYNC_LOG_DIR"
-
-  # Ensure the remote directory exists
-  ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p $REMOTE_DIR"
-
-  # Initial sync
-  rsync -avz --exclude 'venv' --exclude '.venv' "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
-
-  # Watch for changes and sync in the background
-  (while inotifywait -r -e modify,create,delete "$LOCAL_DIR" > /dev/null 2>&1; do
-    rsync -avz --exclude 'venv' --exclude '.venv' "$LOCAL_DIR/" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR" > /dev/null 2>&1
-  done) &
-
-  # Save the PID of the background process
-  echo $! > "$SYNC_LOG_FILE"
-}
-
-list_syncs() {
-  local SYNC_LOG_DIR="$HOME/.sync_logs"
-
-  if [ -d "$SYNC_LOG_DIR" ]; then
-    echo "Running sync processes:"
-    for pid_file in "$SYNC_LOG_DIR"/*.pid; do
-      if [ -f "$pid_file" ]; then
-        local pid=$(cat "$pid_file")
-        if ps -p "$pid" > /dev/null; then
-          echo "Sync process for $(basename "$pid_file" .pid): PID $pid"
-        else
-          echo "Stale PID file: $(basename "$pid_file" .pid)"
-          rm "$pid_file"
-        fi
-      fi
-    done
-  else
-    echo "No sync processes running."
-  fi
-}
-
-stop_sync() {
-  local SYNC_LOG_DIR="$HOME/.sync_logs"
-  local DIR_NAME=$(basename "$1")
-  local SYNC_LOG_FILE="$SYNC_LOG_DIR/$DIR_NAME.pid"
-
-  if [ -f "$SYNC_LOG_FILE" ]; then
-    local PID=$(cat "$SYNC_LOG_FILE")
-    if ps -p "$PID" > /dev/null; then
-      kill "$PID"
-      echo "Stopped sync process for $DIR_NAME (PID $PID)"
-      rm "$SYNC_LOG_FILE"
-    else
-      echo "No running sync process found for $DIR_NAME"
-      rm "$SYNC_LOG_FILE"
-    fi
-  else
-    echo "No sync process found for $DIR_NAME"
-  fi
-}
-
-alias sync=sync_to_remote
-alias syncs=list_syncs
-alias stopsync=stop_sync
-
-
-# chyo stuff
-chyo_login() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: chyo_login <email> <password>"
-        return 1
-    fi
-
-    api_host="api.core.chyo.localhost"
-    
-    response=$(curl -s -X POST "http://$api_host/auth/login" \
-        -H "Content-Type: application/json" \
-        -d "{\"email\": \"$1\", \"password\": \"$2\"}" \
-        -i)
-    
-    echo "Raw response:"
-    echo "$response"
-    
-    if [ -n "$response" ]; then
-        echo "$response" | grep -i "set-cookie" | grep "chyo_auth_token" | cut -d"=" -f2 | cut -d";" -f1
-    else
-        echo "Error: No response from server"
-        return 1
-    fi
-}
 
 # if bun exists, source it
 [ -s "/home/lgx/.bun/_bun" ] && source "/home/lgx/.bun/_bun"
