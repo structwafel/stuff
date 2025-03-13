@@ -1,2 +1,4 @@
 .zsh_history
 .zcompdump
+dotfiles/.fonts/.uuid
+dotfiles/.config/sway/generated_config
