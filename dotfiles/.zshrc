@@ -51,6 +51,9 @@ if [ "$TERM" = "xterm-kitty" ]; then
     alias ssh="kitten ssh"
 fi
 
+# lazy stuff
+alias b="btop"
+
 # Git
 alias gc="git commit -m"
 alias gca="git commit -a -m"
@@ -159,7 +162,7 @@ gt() {
   else
     local pattern=$1
     shift
-    go test ./... -run="(?i)$pattern" -count=1 "$@" 2>&1 | grep -v "\[no test" | grep -v "(cached)" | grep -v "^?"
+    go test ./... -run="(?i)$pattern" $@ 2>&1 | grep -v "\[no test" | grep -v "^?"
   fi
 }
 
