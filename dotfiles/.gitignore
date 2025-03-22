@@ -1,4 +1,5 @@
 .zsh_history
 .zcompdump
 dotfiles/.fonts/.uuid
+dotfiles/.config/nvim/lazy-lock.json
 dotfiles/.config/sway/generated_config
