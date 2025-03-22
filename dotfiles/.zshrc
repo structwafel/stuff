@@ -85,6 +85,7 @@ alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 
 # Dirs
+alias -- -="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -104,12 +105,9 @@ alias cr="clear"
 alias ls="eza --hyperlink"
 alias ll="eza -l --hyperlink"
 alias lll="eza -la --hyperlink"
-alias -- -='cd -'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
+
+# nix
+alias ns="nix-shell"
 
 # nvim things
 n(){
