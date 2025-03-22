@@ -34,5 +34,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # flutter things
 export PATH="$PATH:$HOME/flutter/flutter/bin"
 
+# nix things
+export PATH="$PATH:$HOME/.nix-profile/bin"
+
 . "$HOME/.cargo/env"
 
