@@ -116,10 +116,24 @@ n(){
 
 alias m=micro
 
-# CLERK THINGS
-alias start_clerk_vpn="openvpn3 session-start --config ~/.ssh/client.ovpn"
-alias stop_clerk_vpn="openvpn3 session-manage --config ~/.ssh/client.ovpn --disconnect"
-alias sshclerk="ssh -i ~/.ssh/clerkdev2 lni@dev-luca.clerk.network"
+# Chyo things
+ch() {
+    cd ~/chyo/dev-tools
+    docker compose up -d
+    cd ~/chyo/core
+    docker compose up -d
+    cd ~/chyo/app
+    docker compose up -d
+}
+
+chd() {
+    cd ~/chyo/dev-tools
+    docker compose down
+    cd ~/chyo/core
+    docker compose down
+    cd ~/chyo/app
+    docker compose down
+}
 
 # functions
 brightness() {
@@ -137,6 +151,8 @@ jj () {
 jjp () {
     cd "${1:-.}/$(find . -maxdepth 5 -type d -name .git -not -path '*/.cache/*' | sed 's|/.git$||' | fzf --preview 'tree -L 2 ./{}')"
 }
+
+
 # change java version to 11 in arch for this session
 setjava(){
     if [ -z "$1" ]; then
@@ -149,10 +165,8 @@ setjava(){
 }
 
 
-
 # if bun exists, source it
 [ -s "/home/lgx/.bun/_bun" ] && source "/home/lgx/.bun/_bun"
-
 
 gt() {
   if [ -z "${1:-}" ]; then
