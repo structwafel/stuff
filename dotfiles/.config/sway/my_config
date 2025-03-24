@@ -66,8 +66,8 @@ workspace_layout tabbed
 hide_edge_borders --i3 smart
 
 # Changing audio
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% 
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1
 
 # Changing brightness
 bindsym XF86MonBrightnessUp exec /home/lgx/.config/sway/brightness.sh up
@@ -78,8 +78,8 @@ bindsym $mod+e exec wofi-emoji
 bindsym $mod+w exec firefox
 # Change audio channel
 bindsym $mod+p exec ~/.config/sway/new-audio-switch.sh
-# lock screen
-bindsym $mod+o exec 'swaylock --clock --indicator --color 000000 --datestr "%a %e.%m.%Y" --timestr "%k:%M"'
+# lock screen  # let's be friendly for the oled screen
+bindsym $mod+o exec 'swaylock -f --color 000000'
 
 exec_always nm-applet --indicator
 
@@ -111,15 +111,17 @@ bindswitch --reload --locked lid:off output $laptop enable
 exec_always ~/.config/sway/clamshellmode.sh
 
 
-exec_always {
-    # if at work and either monitor is connected
-    if swaymsg -t get_outputs | grep -q 'DP-1'; then
-            swaymsg output DP-1 pos 0 0 res 1920x1080@120Hz
-    fi
-    if swaymsg -t get_outputs | grep -q 'HDMI-A-1'; then
-        swaymsg output HDMI-A-1 pos 1920 0 res 1920x1080@120Hz
-    fi
-}
+#work stuff? not needed anymore
+# exec_always {
+#     # if at work and either monitor is connected
+#     if swaymsg -t get_outputs | grep -q 'DP-1'; then
+#             swaymsg output DP-1 pos 0 0 res 1920x1080@120Hz
+#     fi
+#     if swaymsg -t get_outputs | grep -q 'HDMI-A-1'; then
+#         swaymsg output HDMI-A-1 pos 1920 0 res 1920x1080@120Hz
+#     fi
+# }
+
 
 # scroll speed
 # input type:pointer {
