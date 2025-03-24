@@ -57,6 +57,9 @@ bindsym $mod+c exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
 # Power menu
 bindsym $mod+Shift+e exec ~/.config/sway/power-menu.sh
 
+# Power profile menu
+bindsym $mod+Shift+p exec ~/.config/sway/power-profile-menu.sh
+
 # borders
 default_border none
 default_floating_border none
