@@ -5,6 +5,9 @@ output "eDP-1" {
     scale_filter nearest
 }
 
+# aggressive swayidle only on laptop
+exec swayidle -w          timeout 30 'swaylock -f -c 000000'          timeout 120 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'          before-sleep 'swaylock -f -c 000000'
+
 exec_always "youtube-music"
 for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
 bindsym $mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize set width 1920 height 1080, move position center
