@@ -22,8 +22,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # mako stuff for notifications
 exec --no-startup-id mako
 
-# solaar for logitech mouse
-exec --no-startup-id solaar --window=hide
+# bluetooth applet
+exec --no-startup-id blueman-applet
 
 # Flameshot things
 # for_window [app_id="flaqmeshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
@@ -47,8 +47,7 @@ bindsym $mod+J exec "~/projects/baycast/target/release/baycast toggle"
 exec sway-audio-idle-inhibit
 
 # Autolaunch applications
-exec /usr/bin/nextcloud --background
-exec blueman-tray
+# exec /usr/bin/nextcloud --background
 
 # Clipboard manager
 exec --no-startup-id wl-paste --watch cliphist store
@@ -84,7 +83,7 @@ bindsym $mod+p exec ~/.config/sway/new-audio-switch.sh
 # lock screen  # let's be friendly for the oled screen
 bindsym $mod+o exec 'swaylock -f --color 000000'
 
-exec_always nm-applet --indicator
+exec_always nm-applet 
 
 
 output "DP-1" allow_tearing yes 
@@ -134,6 +133,6 @@ exec_always ~/.config/sway/clamshellmode.sh
 
 ## if not an the bottom, it doesn't work}
 # generate sway config file
-exec_always --no-startup-id ~/.config/sway/set_sway_config.sh
+exec_always --no-startup-id ~/.config/sway/generate-extra-config.sh
 # and include it
-include ~/.config/sway/generated_config
+include ~/.config/sway/generated-extra-config
