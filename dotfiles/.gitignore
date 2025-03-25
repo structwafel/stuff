@@ -3,3 +3,5 @@
 dotfiles/.fonts/.uuid
 dotfiles/.config/nvim/lazy-lock.json
 dotfiles/.config/sway/generated_config
+dotfiles/.config/sway/outputs
+dotfiles/.config/sway/workspaces
