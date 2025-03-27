@@ -53,6 +53,7 @@ fi
 
 # lazy stuff
 alias b="btop"
+alias ccp="wl-copy"
 
 # Git
 alias gc="git commit -m"
