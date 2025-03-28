@@ -54,10 +54,10 @@ exec --no-startup-id wl-paste --watch cliphist store
 bindsym $mod+c exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
 # Power menu
-bindsym $mod+Shift+e exec ~/.config/sway/power-menu.sh
+bindsym $mod+Shift+e exec ~/.config/sway/scripts/power-menu.sh
 
 # Power profile menu
-bindsym $mod+Shift+p exec ~/.config/sway/power-profile-menu.sh
+bindsym $mod+Shift+p exec ~/.config/sway/scripts/power-profile-menu.sh
 
 # borders
 default_border none
@@ -72,8 +72,8 @@ bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1
 
 # Changing brightness
-bindsym XF86MonBrightnessUp exec /home/lgx/.config/sway/brightness.sh up
-bindsym XF86MonBrightnessDown exec /home/lgx/.config/sway/brightness.sh down
+bindsym XF86MonBrightnessUp exec /home/lgx/.config/sway/scripts/brightness.sh up
+bindsym XF86MonBrightnessDown exec /home/lgx/.config/sway/scripts/brightness.sh down
 
 # Shortcuts
 bindsym $mod+e exec wofi-emoji
@@ -110,7 +110,7 @@ input type:touchpad {
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-exec_always ~/.config/sway/clamshellmode.sh
+exec_always ~/.config/sway/scripts/clamshellmode.sh
 
 
 #work stuff? not needed anymore

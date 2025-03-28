@@ -1,12 +1,15 @@
 
-# output settings for this device
-output "eDP-1" {
-    scale 1.5
-    scale_filter nearest
-}
+# Desktop bar without battery
+bar {
+    position bottom
+    status_command while date +'%d-%m-%Y %H:%M:%S'; do sleep 1; done
 
-# aggressive swayidle only on laptop
-exec swayidle -w          timeout 30 'swaylock -f -c 000000'          timeout 120 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'          before-sleep 'swaylock -f -c 000000'
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
 
 exec_always "youtube-music"
 for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
@@ -18,4 +21,4 @@ bindsym $mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize
 
 exec_always "kitty --class mykitty ~/"
 for_window [app_id="mykitty"] move scratchpad
-bindsym $mod+l [app_id="mykitty"] scratchpad show, resize set width 1600 height 800, move position center
+bindsym $mod+l [app_id="mykitty"] scratchpad show, resize set width 1920 height 1080, move position center

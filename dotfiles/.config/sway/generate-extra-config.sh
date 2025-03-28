@@ -2,62 +2,17 @@
 
 hostname=$(cat /etc/hostname)
 
-# Old laptop
-if [ "$hostname" = "xpslaptop" ]; then
-    cat <<EOF > ~/.config/sway/generated_config
-exec_always "youtube-music"
-for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
-bindsym \$mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize set width 1600 height 800, move position center
+# Clear any existing generated config
+rm -f ~/.config/sway/generated-extra-config
 
-# exec_always "signal-desktop"
-# for_window [app_id="signal"] move scratchpad
-# bindsym \$mod+r [app_id="signal"] scratchpad show, resize set width 1600 height 800, move position center
+# Get hostname
+HOSTNAME=$(cat /etc/hostname)
 
-exec_always "kitty --class mykitty ~/"
-for_window [app_id="mykitty"] move scratchpad
-bindsym \$mod+l [app_id="mykitty"] scratchpad show, resize set width 1600 height 800, move position center
-EOF
-# Home Desktop
-elif [ "$hostname" = "archswayhome" ]; then
-    cat <<EOF > ~/.config/sway/generated_config
-exec_always "youtube-music"
-for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
-bindsym \$mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize set width 1920 height 1080, move position center
-
-# exec_always "signal-desktop"
-# for_window [app_id="signal"] move scratchpad
-# bindsym \$mod+r [app_id="signal"] scratchpad show, resize set width 1920 height 1080, move position center
-
-exec_always "kitty --class mykitty ~/"
-for_window [app_id="mykitty"] move scratchpad
-bindsym \$mod+l [app_id="mykitty"] scratchpad show, resize set width 1920 height 1080, move position center
-EOF
-# New laptop stuff
-elif [ "$hostname" = "archlinuxpro9" ]; then
-    cat <<EOF > ~/.config/sway/generated_config
-
-# output settings for this device
-output "eDP-1" {
-    scale 1.5
-    scale_filter nearest
-}
-
-# aggressive swayidle only on laptop
-exec swayidle -w \
-         timeout 30 'swaylock -f -c 000000' \
-         timeout 120 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-
-exec_always "youtube-music"
-for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
-bindsym \$mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize set width 1920 height 1080, move position center
-
-# exec_always "signal-desktop"
-# for_window [app_id="signal"] move scratchpad
-# bindsym \$mod+r [app_id="signal"] scratchpad show, resize set width 1920 height 1080, move position center
-
-exec_always "kitty --class mykitty ~/"
-for_window [app_id="mykitty"] move scratchpad
-bindsym \$mod+l [app_id="mykitty"] scratchpad show, resize set width 1600 height 800, move position center
-EOF
+# Link the appropriate configuration based on hostname
+if [[ "$HOSTNAME" == "archlinuxpro9" ]]; then
+    # Laptop configuration
+    ln -sf ~/.config/sway/config.d/yogapro ~/.config/sway/generated-extra-config
+elif [[ "$HOSTNAME" == "archswayhome" ]]; then
+    # Desktop configuration
+    ln -sf ~/.config/sway/config.d/desktop ~/.config/sway/generated-extra-config
 fi
