@@ -5,3 +5,5 @@ dotfiles/.config/nvim/lazy-lock.json
 dotfiles/.config/sway/generated_config
 dotfiles/.config/sway/outputs
 dotfiles/.config/sway/workspaces
+
+dotfiles/.config/nvim/lazy-lock.json
