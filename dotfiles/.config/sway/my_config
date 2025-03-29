@@ -79,7 +79,7 @@ bindsym XF86MonBrightnessDown exec /home/lgx/.config/sway/scripts/brightness.sh 
 bindsym $mod+e exec wofi-emoji
 bindsym $mod+w exec firefox
 # Change audio channel
-bindsym $mod+p exec ~/.config/sway/new-audio-switch.sh
+bindsym $mod+p exec ~/.config/sway/scripts/new-audio-switch.sh
 # lock screen  # let's be friendly for the oled screen
 bindsym $mod+o exec 'swaylock -f --color 000000'
 

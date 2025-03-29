@@ -4,7 +4,7 @@ return {
       window = {
         position = "right",
         -- Optional: Set an obvious width to see if *any* options apply
-        width = 10,
+        -- width = 10,
       },
     },
   }
