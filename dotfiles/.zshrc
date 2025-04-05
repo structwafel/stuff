@@ -51,6 +51,8 @@ if [ "$TERM" = "xterm-kitty" ]; then
     alias ssh="kitten ssh"
 fi
 
+alias hx="helix"
+
 # lazy stuff
 alias b="btop"
 alias ccp="wl-copy"
