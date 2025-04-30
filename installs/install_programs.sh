@@ -16,7 +16,7 @@ programs=(
   "nautilus-image-converter"
   "nautilus-share"
   "fastfetch"
-  "flameshot"
+  "ferrishot"
   # stuff for flameshot
   "xdg-desktop-portal"
   "xdg-desktop-portal-gnome"
