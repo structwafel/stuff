@@ -47,6 +47,17 @@ exec --no-startup-id albert
 # bindsym $mod+J exec "~/projects/hot_dog/target/release/hot_dog toggle"
 # for_window [app_id="hot_dog"] move absolute position center 300 500
 
+
+# meatwar stuff
+# for_window [title="Meatwar"] floating enable
+# for_window [title="Meatwar"] move position 0 0
+# for_window [title="Meatwar"] focus none
+for_window [title="Meatwar"] floating enable, move position 0 0, move scratchpad
+bindsym $mod+r [title="Meatwar"] scratchpad show
+
+# bindsym $mod+J exec "~/projects/hot_dog/target/release/hot_dog toggle"
+
+
 # don't idle when audio is playing
 # https://github.com/ErikReider/SwayAudioIdleInhibit
 exec sway-audio-idle-inhibit
