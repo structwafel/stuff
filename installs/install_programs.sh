@@ -16,7 +16,8 @@ programs=(
   "nautilus-image-converter"
   "nautilus-share"
   "fastfetch"
-  "ferrishot"
+  "ferrishot-bin" # screenshot tool
+  "kooha" # excellent simple recording
   # stuff for flameshot
   "xdg-desktop-portal"
   "xdg-desktop-portal-gnome"
@@ -24,12 +25,12 @@ programs=(
   "grim"
   "slurp"
   "fuzzel"
-  "gdu"
+  "gdu" 
   "github-cli"
   "btop"
-  "lazygit"
-  "lazydocker"
-  "nextcloud-client"
+  # "lazygit"
+  # "lazydocker"
+  # "nextcloud-client"
   "pavucontrol"
   "polkit-gnome"
   "polkit"
@@ -56,11 +57,18 @@ programs=(
   "rust-analyzer"
 )
 
+# filter out installed programs
+to_install=()
 for program in "${programs[@]}"; do
   if ! pacman -Q $program &>/dev/null; then
-    echo "Installing $program"
-    yay -S --noconfirm $program
+    to_install+=("$program")
   else
     echo "$program already installed"
   fi
 done
+
+# install programs
+if [ ${#to_install[@]} -gt 0 ]; then
+  echo "Installing ${#to_install[@]} packages..."
+  yay -S --noconfirm "${to_install[@]}"
+fi
