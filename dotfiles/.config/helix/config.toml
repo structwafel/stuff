@@ -1,0 +1,37 @@
+theme = "gruvbox_dark_hard"
+
+
+
+
+[editor]
+default-yank-register = "+"
+line-number = "relative"
+
+
+[keys.normal]
+
+A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+A-j = [ "extend_to_line_bounds", "delete_selection", "move_line_down", "paste_before" ]
+"C-g" = [
+    ":write-all",
+    ":insert-output lazygit >/dev/tty",
+    ":redraw",
+    ":reload-all",
+]
+"C-s" = ":write"
+"C-j" = "save_selection"
+
+[keys.normal.space]
+"q"= ":quit"
+
+[keys.insert]
+"C-p" = "paste_after"
+"C-g" = [
+    ":write-all",
+    ":insert-output lazygit >/dev/tty",
+    ":redraw",
+    ":reload-all",
+]
+"C-s" = ":write"
+A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+A-j = [ "extend_to_line_bounds", "delete_selection", "move_line_down", "paste_before" ]
