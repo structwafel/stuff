@@ -186,7 +186,9 @@ gtw() {
   watchexec "go test ./... -run=\"(?i)$pattern\" 2>&1 | grep -v \"\[no test\" | grep -v \"(cached)\" | grep -v \"^?\""
 }
 
-eval "$(direnv hook zsh)"
+if command -v direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
