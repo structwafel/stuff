@@ -6,6 +6,7 @@ theme = "gruvbox_dark_hard"
 [editor]
 default-yank-register = "+"
 line-number = "relative"
+auto-format = true
 
 
 [keys.normal]
@@ -21,6 +22,10 @@ A-j = [ "extend_to_line_bounds", "delete_selection", "move_line_down", "paste_be
 ]
 "C-s" = ":write"
 "C-j" = "save_selection"
+"}" = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
+# "p" = "paste_before"
+# "P" = "paste_after"
 
 [keys.normal.space]
 "q"= ":quit"
