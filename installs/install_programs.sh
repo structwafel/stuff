@@ -54,6 +54,9 @@ programs=(
   "bluez"
   "bluez-utils"
   "network-manager-applet"
+  # editor
+  "helix"
+  "taplo-cli"
   "rust-analyzer"
 )
 

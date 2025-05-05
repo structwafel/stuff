@@ -15,6 +15,7 @@ A-j = [ "extend_to_line_bounds", "delete_selection", "move_line_down", "paste_be
 "C-g" = [
     ":write-all",
     ":insert-output lazygit >/dev/tty",
+    # ":run-shell-command kitty @ launch --type=overlay --cwd=current lazygit",
     ":redraw",
     ":reload-all",
 ]
