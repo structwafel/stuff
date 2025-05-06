@@ -111,7 +111,7 @@ output "DP-1" allow_tearing yes
 
 
 input type:keyboard {
-    repeat_delay 150
+    repeat_delay 180
     repeat_rate 50
 }
 
