@@ -7,8 +7,12 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232FF #323232FF #5c5c5c    
     }
+
+    hidden_state hide
+    mode hide
+    modifier Mod4
 }
 
 # output settings for this device
