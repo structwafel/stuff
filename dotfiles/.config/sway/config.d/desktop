@@ -24,6 +24,6 @@ bar {
 # for_window [app_id="signal"] move scratchpad
 # bindsym $mod+r [app_id="signal"] scratchpad show, resize set width 1920 height 1080, move position center
 
-exec_always "kitty --class mykitty ~/"
-for_window [app_id="mykitty"] move scratchpad
-bindsym $mod+l [app_id="mykitty"] scratchpad show, resize set width 1920 height 1080, move position center
+exec_always "wezterm start --class MyWezTerm"
+for_window [app_id="MyWezTerm"] move scratchpad
+bindsym $mod+l [app_id="MyWezTerm"] scratchpad show, resize set width 1920 height 1080, move position center
