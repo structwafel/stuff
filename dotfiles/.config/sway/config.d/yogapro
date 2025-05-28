@@ -15,6 +15,15 @@ bar {
     modifier Mod4
 }
 
+input type:keyboard {
+    repeat_delay 180
+    repeat_rate 50
+
+    xkb_layout us
+
+    xkb_options caps:swapescape
+}
+
 # output settings for this device
 output "eDP-1" {
     scale 1.5

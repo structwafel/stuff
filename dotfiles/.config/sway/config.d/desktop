@@ -16,6 +16,16 @@ bar {
 }
 
 
+input type:keyboard {
+    repeat_delay 180
+    repeat_rate 50
+
+    xkb_layout us
+
+    xkb_options caps:swapescape
+}
+
+
 # exec_always "youtube-music"
 # for_window [app_id="com.github.th_ch.youtube_music"] move scratchpad
 # bindsym $mod+m [app_id="com.github.th_ch.youtube_music"] scratchpad show, resize set width 1920 height 1080, move position center

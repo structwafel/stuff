@@ -34,7 +34,7 @@ bindsym Print exec ferrishot
 
 
 # albert exec
-exec --no-startup-id albert
+# exec --no-startup-id albert
 
 # kunkun stuff
 # for_window [app_id="kunkun"] floating enable
@@ -113,10 +113,7 @@ output "DP-1" allow_tearing yes
 # bindsym $mod+v [app_id="protonvpn-app"] scratchpad show
 
 
-input type:keyboard {
-    repeat_delay 180
-    repeat_rate 50
-}
+
 
 # nicer touchpad settings
 input type:touchpad {
