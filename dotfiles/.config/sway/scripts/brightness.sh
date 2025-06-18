@@ -4,10 +4,10 @@
 # lgx ALL=(ALL) NOPASSWD: /home/lgx/go/bin/gbmonctl
 
 
-# Define file to store the current brightness level
+# Define file to store the current brightness level (in percent)
 BRIGHTNESS_FILE="$HOME/.current_brightness"
-DEFAULT_BRIGHTNESS=100 # Default to 50 if no file exists
-STEP=10 # Adjust step size
+DEFAULT_BRIGHTNESS=100 # Default to 100% if no file exists
+STEP=10 # Adjust step size (in percent)
 
 # Check if the brightness file exists, if not create it with default brightness
 if [ ! -f "$BRIGHTNESS_FILE" ]; then
@@ -41,7 +41,7 @@ if [ "$name" = "archswayhome" ]; then
     # sudo /home/lgx/.config/sway/set-brightness.sh "$new_brightness"
     # Update the brightness file
 else
-    brightnessctl s $new_brightness
+    brightnessctl s "${new_brightness}%"
 fi
 
 echo "$new_brightness" > "$BRIGHTNESS_FILE"
