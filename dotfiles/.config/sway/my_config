@@ -7,7 +7,7 @@
 set $env:QT_QPA_PLATFORMTHEME qt5ct
 set $env:CARGO_TARGET_DIR /tmp/cargo-target
 
-set $env:SDL_VIDEODRIVER wayland
+set $env:SDL_VIDEODRIVER wayland,x11
 set $env:_JAVA_AWT_WM_NONREPARENTING 1
 set $env:QT_QPA_PLATFORM wayland
 set $env:XDG_CURRENT_DESKTOP sway
