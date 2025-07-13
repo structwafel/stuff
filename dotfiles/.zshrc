@@ -24,6 +24,8 @@ setopt SHARE_HISTORY
 
 # keybindings
 source  $HOME/.zsh_keybindings
+# docker completions
+FPATH="$HOME/.docker/completions:$FPATH"
 
 # Load zsh completion.
 autoload -Uz compinit && compinit
@@ -42,7 +44,6 @@ setopt auto_cd
 #export CARGO_TARGET_DIR="$HOME/.cargo/shared-target"
 
 export EDITOR="micro"
-
 
 
 # aliases
