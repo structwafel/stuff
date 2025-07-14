@@ -7,7 +7,8 @@
 # Define file to store the current brightness level (in percent)
 BRIGHTNESS_FILE="$HOME/.current_brightness"
 DEFAULT_BRIGHTNESS=100 # Default to 100% if no file exists
-STEP=10 # Adjust step size (in percent)
+STEP=10 # Default step size (in percent)
+MIN_BRIGHTNESS=1 # Minimum brightness (1% instead of 0%)
 
 # Check if the brightness file exists, if not create it with default brightness
 if [ ! -f "$BRIGHTNESS_FILE" ]; then
@@ -17,18 +18,28 @@ fi
 # Read the current brightness
 current_brightness=$(cat "$BRIGHTNESS_FILE")
 
-# Calculate new brightness based on the argument (+10 or -10)
-if [ "$1" == "up" ]; then
-    new_brightness=$((current_brightness + STEP))
-elif [ "$1" == "down" ]; then
-    new_brightness=$((current_brightness - STEP))
+# Determine step size based on current brightness
+# Use smaller steps at lower brightness levels
+if [ $current_brightness -le 10 ]; then
+    step_size=1
+elif [ $current_brightness -le 30 ]; then
+    step_size=5
+else
+    step_size=$STEP
 fi
 
-# Limit the brightness values to between 0 and 100
+# Calculate new brightness based on the argument
+if [ "$1" == "up" ]; then
+    new_brightness=$((current_brightness + step_size))
+elif [ "$1" == "down" ]; then
+    new_brightness=$((current_brightness - step_size))
+fi
+
+# Limit the brightness values to between MIN_BRIGHTNESS and 100
 if [ $new_brightness -gt 100 ]; then
     new_brightness=100
-elif [ $new_brightness -lt 0 ]; then
-    new_brightness=0
+elif [ $new_brightness -lt $MIN_BRIGHTNESS ]; then
+    new_brightness=$MIN_BRIGHTNESS
 fi
 
 name=$(uname -n)
