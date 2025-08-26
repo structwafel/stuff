@@ -44,6 +44,8 @@ setopt auto_cd
 #export CARGO_TARGET_DIR="$HOME/.cargo/shared-target"
 
 export EDITOR="micro"
+export PAGER="bat"
+
 
 
 # aliases
