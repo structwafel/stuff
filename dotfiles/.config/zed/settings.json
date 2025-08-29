@@ -12,7 +12,7 @@
   "show_completion_documentation": false,
   //
   "base_keymap": "VSCode",
-  "theme": "Gruvbox Dark Hard",
+  "theme": "Gruvbox Dark Soft",
   //
   "telemetry": {
     "diagnostics": false,
@@ -27,11 +27,11 @@
     "git_status": true
   },
   //
-  "ui_font_size": 14,
+  "ui_font_size": 16,
   "ui_font_weight": 500,
   "ui_font_family": "NotoSansM Nerd Font Mono",
   //
-  "buffer_font_size": 14,
+  "buffer_font_size": 16,
   "buffer_font_weight": 500,
   "buffer_line_height": "standard",
   "buffer_font_family": "NotoSansM Nerd Font Mono",
