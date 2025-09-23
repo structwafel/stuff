@@ -7,7 +7,7 @@
 set $env:QT_QPA_PLATFORMTHEME qt5ct
 set $env:CARGO_TARGET_DIR /tmp/cargo-target
 
-set $env:SDL_VIDEODRIVER wayland
+set $env:SDL_VIDEODRIVER wayland,11
 set $env:_JAVA_AWT_WM_NONREPARENTING 1
 set $env:QT_QPA_PLATFORM wayland
 set $env:XDG_CURRENT_DESKTOP sway
@@ -61,6 +61,12 @@ bindsym $mod+r [title="Meatwar"] scratchpad show
 # don't idle when audio is playing
 # https://github.com/ErikReider/SwayAudioIdleInhibit
 exec sway-audio-idle-inhibit
+# # and another one
+# exec_always --no-startup-id /usr/local/bin/swaddle &
+
+# Inhibit idle for Stremio when fullscreen or focused
+for_window [app_id="com.stremio.stremio"] inhibit_idle fullscreen
+for_window [class="stremio"] inhibit_idle fullscreen
 
 # Autolaunch applications
 # exec /usr/bin/nextcloud --background
@@ -146,6 +152,8 @@ exec_always ~/.config/sway/scripts/clamshellmode.sh
 #     scroll_factor 1.2
 # }
 
+# we no do background
+swaybg_command -
 
 ## if not an the bottom, it doesn't work}
 # generate sway config file
