@@ -71,6 +71,9 @@ for_window [class="stremio"] inhibit_idle fullscreen
 # Autolaunch applications
 # exec /usr/bin/nextcloud --background
 
+# waystt
+bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to ydotool type --key-delay 0 --file - &)"
+
 # Clipboard manager
 exec --no-startup-id wl-paste --watch cliphist store
 bindsym $mod+c exec cliphist list | wofi --dmenu | cliphist decode | wl-copy

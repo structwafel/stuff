@@ -26,6 +26,9 @@ setopt SHARE_HISTORY
 source  $HOME/.zsh_keybindings
 # docker completions
 FPATH="$HOME/.docker/completions:$FPATH"
+# ydotool
+export YDOTOOL_SOCKET=/tmp/.ydotool_socket
+
 
 # Load zsh completion.
 autoload -Uz compinit && compinit
