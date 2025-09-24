@@ -16,7 +16,7 @@ programs=(
   "nautilus-image-converter"
   "nautilus-share"
   "fastfetch"
-  "ferrishot-bin" # screenshot tool
+  "satty" 
   "kooha" # excellent simple recording
   # stuff for flameshot
   "xdg-desktop-portal"

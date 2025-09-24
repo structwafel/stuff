@@ -30,7 +30,7 @@ exec --no-startup-id blueman-applet
 # exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # bindsym Print exec slurp | grim -g - - | wl-copy
-bindsym Print exec ferrishot
+bindsym Print exec grim -g "$(slurp -o -r -c '#ff0000ff')" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
 
 
 # albert exec
@@ -52,8 +52,8 @@ bindsym Print exec ferrishot
 # for_window [title="Meatwar"] floating enable
 # for_window [title="Meatwar"] move position 0 0
 # for_window [title="Meatwar"] focus none
-for_window [title="Meatwar"] floating enable, move position 0 0, move scratchpad
-bindsym $mod+r [title="Meatwar"] scratchpad show
+# for_window [title="meatwar: client"] floating enable, move position 0 0, move scratchpad
+# bindsym $mod+r [title="meatwar: client"] scratchpad show
 
 # bindsym $mod+J exec "~/projects/hot_dog/target/release/hot_dog toggle"
 
