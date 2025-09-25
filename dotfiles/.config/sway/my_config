@@ -141,6 +141,7 @@ input type:touchpad {
     tap enabled
     natural_scroll disabled
     middle_emulation enabled
+    drag_lock disabled
 }
 
 # laptop lid stuff
