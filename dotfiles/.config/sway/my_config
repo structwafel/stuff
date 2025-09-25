@@ -29,14 +29,10 @@ exec --no-startup-id blueman-applet
 # for_window [app_id="flaqmeshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 # exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-# bindsym Print exec slurp | grim -g - - | wl-copy
-# bindsym Print exec grim -g "$(slurp -o -r -c '#ff0000ff')" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
-# bindsym Print exec grim -g "$(slurp -r -c '#ff0000ff')" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
-# bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') -g "$(slurp -r -c '#ff0000ff')" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
-# bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')  "$(slurp -r -c '#ff0000ff')" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
 set $satty satty -f - --initial-tool=arrow --copy-command=wl-copy --actions-on-escape="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications --fullscreen
 
-bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
+# bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
+bindsym Print exec grim -t ppm - | $satty
 
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
