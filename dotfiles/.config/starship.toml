@@ -8,3 +8,139 @@ add_newline = true
 
 format = '''$all$directory$character'''
 # right_format = """$all"""
+
+# Cloud providers
+[gcloud]
+disabled = true
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+# Container/orchestration
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[terraform]
+disabled = true
+
+[pulumi]
+disabled = true
+
+# Languages/tools you likely don't need in prompt
+[java]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[ruby]
+disabled = true
+
+[php]
+disabled = true
+
+[perl]
+disabled = true
+
+[lua]
+disabled = true
+
+[elm]
+disabled = true
+
+[elixir]
+disabled = true
+
+[erlang]
+disabled = true
+
+[haskell]
+disabled = true
+
+[julia]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[nim]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[purescript]
+disabled = true
+
+[raku]
+disabled = true
+
+[red]
+disabled = true
+
+[scala]
+disabled = true
+
+[swift]
+disabled = true
+
+[vlang]
+disabled = true
+
+[zig]
+disabled = true
+
+[dart]
+disabled = true
+
+[crystal]
+disabled = true
+
+# Other potentially slow modules
+[singularity]
+disabled = true
+
+[openstack]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[conda]
+disabled = true
+
+[cmake]
+disabled = true
+
+[cobol]
+disabled = true
+
+[daml]
+disabled = true
+
+[helm]
+disabled = true
+
+[buf]
+disabled = true
+
+[meson]
+disabled = true
+
+[gradle]
+disabled = true
+
+[spack]
+disabled = true
+
+[solidity]
+disabled = true

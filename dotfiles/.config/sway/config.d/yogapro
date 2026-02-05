@@ -34,8 +34,8 @@ output "eDP-1" {
 
 # aggressive swayidle only on laptop
 exec swayidle -w \
-         timeout 50 'swaylock -f -c 000000' \
-         timeout 55 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 1000 'swaylock -f -c 000000' \
+         timeout 1000 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
 # exec_always "youtube-music"
@@ -46,6 +46,6 @@ exec swayidle -w \
 # for_window [app_id="signal"] move scratchpad
 # bindsym $mod+r [app_id="signal"] scratchpad show, resize set width 1920 height 1080, move position center
 
-exec_always "wezterm start --class MyWezTerm"
-for_window [app_id="MyWezTerm"] move scratchpad
-bindsym $mod+l [app_id="MyWezTerm"] scratchpad show, resize set width 1600 height 800, move position center
+exec_always foot --app-id=foot-scratch --working-directory=$HOME
+for_window [app_id="foot-scratch"] move scratchpad
+bindsym $mod+l [app_id="foot-scratch"] scratchpad show, resize set width 1600 height 800, move position center

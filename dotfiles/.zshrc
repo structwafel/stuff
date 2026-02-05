@@ -36,7 +36,12 @@ FPATH="$HOME/.docker/completions:$FPATH"
 
 
 # Load zsh completion.
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+compinit
+else
+compinit -C  # skip security check, use cache
+fi
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 # partial completion suggestions
@@ -206,11 +211,16 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && ua-drop-caches \
       && yay -Syyu --noconfirm'
 
-if command -v direnv > /dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
+# if command -v direnv > /dev/null 2>&1; then
+#   eval "$(direnv hook zsh)"
+# fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 
-[ -f "/home/lgx/.ghcup/env" ] && . "/home/lgx/.ghcup/env" # ghcup-env
+
+# poo nvm is slow
+# [ -f "/home/lgx/.ghcup/env" ] && . "/home/lgx/.ghcup/env" # ghcup-env
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

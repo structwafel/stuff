@@ -6,13 +6,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "icon_theme": "Zed (Default)",
   "features": {
     // "edit_prediction_provider": "zed"
   },
   "show_completion_documentation": false,
   //
   "base_keymap": "VSCode",
-  "theme": "Gruvbox Dark Soft",
+  "theme": "Gruvbox Dark Hard",
   //
   "telemetry": {
     "diagnostics": false,
@@ -31,8 +32,8 @@
   "ui_font_weight": 500,
   "ui_font_family": "NotoSansM Nerd Font Mono",
   //
-  "buffer_font_size": 16,
-  "buffer_font_weight": 500,
+  "buffer_font_size": 14.0,
+  "buffer_font_weight": 500.0,
   "buffer_line_height": "standard",
   "buffer_font_family": "NotoSansM Nerd Font Mono",
   //
