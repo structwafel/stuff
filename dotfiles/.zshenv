@@ -37,5 +37,4 @@ export PATH="$PATH:$HOME/flutter/flutter/bin"
 # nix things
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
-export PATH="$PATH:$HOME/.cargo/env"
 
