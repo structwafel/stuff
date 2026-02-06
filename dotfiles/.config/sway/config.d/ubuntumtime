@@ -1,0 +1,33 @@
+
+bar {
+    position bottom
+    status_command ~/stuff/dotfiles/.config/sway/scripts/status.sh
+
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #323232FF #323232FF #5c5c5c
+    }
+
+    hidden_state hide
+    mode hide
+    modifier Mod4
+}
+
+input type:keyboard {
+    repeat_delay 180
+    repeat_rate 50
+    xkb_layout us
+}
+
+# aggressive swayidle only on laptop
+exec swayidle -w \
+         timeout 1000 'swaylock -f -c 000000' \
+         timeout 1000 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+
+exec_always foot --app-id=foot-scratch --working-directory=$HOME
+for_window [app_id="foot-scratch"] move scratchpad
+bindsym $mod+l [app_id="foot-scratch"] scratchpad show, resize set width 1920 height 1080, move position center
