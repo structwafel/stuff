@@ -12,11 +12,14 @@ set $env:_JAVA_AWT_WM_NONREPARENTING 1
 set $env:QT_QPA_PLATFORM wayland
 set $env:XDG_CURRENT_DESKTOP sway
 set $env:XDP_SESSION_DEKSTOP sway
+set $env:XCURSOR_THEME Adwaita
+set $env:FREETYPE_PROPERTIES truetype:interpreter-version=40
 
+seat seat0 xcursor_theme Adwaita 10
 
 # install polkit-gnome
 exec dbus-update-activation-environment --all
-exec gnome-keyring-daemon --start --components=secrets
+exec gnome-keyring-daemon --start --replace --components=pkcs11,secrets,ssh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # mako stuff for notifications
@@ -33,6 +36,8 @@ set $satty satty -f - --initial-tool=arrow --copy-command=wl-copy --actions-on-e
 
 # bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
 bindsym Print exec grim -t ppm - | $satty
+bindsym XF86Launch2 exec grim -t ppm - | $satty
+bindsym Sys_Req exec grim -t ppm - | $satty
 
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
@@ -126,7 +131,8 @@ bindsym $mod+o exec 'swaylock -f --color 000000'
 exec_always nm-applet 
 
 
-output "DP-1" allow_tearing yes 
+# output "DP-1" allow_tearing yes
+output "Dell Inc. DELL P2720DC 8D4SK53" subpixel rgb
 
 #protonvpn
 # exec_always "protonvpn-app"
@@ -146,9 +152,12 @@ input type:touchpad {
 
 # laptop lid stuff
 set $laptop eDP-1
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
+bindswitch --locked lid:on output $laptop disable
+bindswitch --locked lid:off output $laptop enable
 exec_always ~/.config/sway/scripts/clamshellmode.sh
+
+# toggle internal display
+bindsym $mod+i exec ~/.config/sway/scripts/toggle-internal-display.sh
 
 
 #work stuff? not needed anymore

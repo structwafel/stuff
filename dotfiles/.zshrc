@@ -1,26 +1,30 @@
 # plugins
+# autosuggestions (homebrew / arch / ubuntu)
 if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+elif [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-# if /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh exist
+# fast-syntax-highlighting (arch / ~/.local)
 if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh ]; then
     source /usr/share/zsh/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
-fi
-if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
+elif [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
     source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+elif [ -f ~/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
+    source ~/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 fi
 
 zle_highlight=('paste:none')
+# autopair (arch / ~/.local)
 if [ -f /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autopair/zsh-autopair.plugin.zsh
-fi
-if [ -f /usr/share/zsh/plugins/zsh-autopair/autopair.zsh ]; then
+elif [ -f /usr/share/zsh/plugins/zsh-autopair/autopair.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autopair/autopair.zsh
+elif [ -f ~/.local/share/zsh/zsh-autopair/autopair.zsh ]; then
+    source ~/.local/share/zsh/zsh-autopair/autopair.zsh
 fi
 
 
@@ -66,6 +70,15 @@ export PAGER="bat"
 
 
 # aliases
+
+#work
+mtimereset() {
+    docker kill $(docker ps -q)
+    make dev
+    make db-restore-e2e
+    docker compose restart api
+}
+
 # if kitty is terminal, use kitty +kitten ssh
 if [ "$TERM" = "xterm-kitty" ]; then
     alias ssh="kitten ssh"
@@ -76,6 +89,7 @@ alias hx="helix"
 # lazy stuff
 alias b="btop"
 alias ccp="wl-copy"
+alias bat="batcat"
 
 # Git
 alias gc="git commit -m"

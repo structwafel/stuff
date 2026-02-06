@@ -13,4 +13,7 @@ if [[ "$HOSTNAME" == "archlinuxpro9" ]]; then
 elif [[ "$HOSTNAME" == "archswayhome" ]]; then
     # Desktop configuration - copy content
     cat ~/stuff/dotfiles/.config/sway/config.d/desktop > ~/.config/sway/generated-extra-config
+elif [[ "$HOSTNAME" == "ubuntumtime" ]]; then
+    # Work laptop (ThinkPad L14) configuration
+    cat ~/stuff/dotfiles/.config/sway/config.d/ubuntumtime > ~/.config/sway/generated-extra-config
 fi
