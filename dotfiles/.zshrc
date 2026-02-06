@@ -44,11 +44,7 @@ FPATH="$HOME/.docker/completions:$FPATH"
 
 # Load zsh completion.
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-compinit
-else
-compinit -C  # skip security check, use cache
-fi
+compinit -C
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 # partial completion suggestions
@@ -65,7 +61,11 @@ setopt auto_cd
 #export CARGO_TARGET_DIR="$HOME/.cargo/shared-target"
 
 export EDITOR="micro"
-export PAGER="bat"
+if command -v bat > /dev/null 2>&1; then
+  export PAGER="bat"
+elif command -v batcat > /dev/null 2>&1; then
+  export PAGER="batcat"
+fi
 
 
 
