@@ -22,7 +22,16 @@ input type:keyboard {
 
     xkb_layout us
 
-    # xkb_options caps:swapescape
+}
+
+# Swap escape and caps only on integrated keyboard
+input "1452:591:Keychron_Keychron_K3" {
+    xkb_options caps:swapescape
+
+    repeat_delay 180
+    repeat_rate 50
+
+    xkb_layout us
 }
 
 

@@ -9,6 +9,13 @@ add_newline = true
 format = '''$all$directory$character'''
 # right_format = """$all"""
 
+
+[bun]
+detect_files = ['bun.lockb', 'bun.lock', 'bunfig.toml']
+
+[nodejs]
+disabled = true
+
 # Cloud providers
 [gcloud]
 disabled = true

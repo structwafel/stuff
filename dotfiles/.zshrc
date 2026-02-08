@@ -41,7 +41,7 @@ source  $HOME/.zsh_keybindings
 # docker completions
 FPATH="$HOME/.docker/completions:$FPATH"
 
-
+fpath=(~/.zsh/completions $fpath)
 # Load zsh completion.
 autoload -Uz compinit
 compinit -C
@@ -189,6 +189,10 @@ jjp () {
     cd "${1:-.}/$(find . -maxdepth 5 -type d -name .git -not -path '*/.cache/*' | sed 's|/.git$||' | fzf --preview 'tree -L 2 ./{}')"
 }
 
+
+# nvm things
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 
 # change java version to 11 in arch for this session
 setjava(){
