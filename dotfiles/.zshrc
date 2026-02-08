@@ -190,10 +190,6 @@ jjp () {
 }
 
 
-# nvm things
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-
 # change java version to 11 in arch for this session
 setjava(){
     if [ -z "$1" ]; then
