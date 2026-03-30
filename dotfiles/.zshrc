@@ -50,6 +50,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*:make:*' tag-order targets
 
 # Auto fix small errors
 setopt nocaseglob # ignore case
