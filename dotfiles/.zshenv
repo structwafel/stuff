@@ -7,7 +7,7 @@ export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
 # idk pam/sway/ly/systemd enviroment variables/ everything doesn't work as expected.
 # so setting this manually 
-export SSH_AUTH_SOCK=/run/user/1000/gcr/ssh
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 #add .local/bin to path
 export PATH=$HOME/.local/bin:$PATH

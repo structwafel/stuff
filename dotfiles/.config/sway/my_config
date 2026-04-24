@@ -173,9 +173,11 @@ bindsym $mod+i exec ~/.config/sway/scripts/toggle-internal-display.sh
 
 
 # scroll speed
-# input type:pointer {
-#     scroll_factor 1.2
-# }
+input type:pointer {
+    scroll_factor 2
+    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+}
 
 # we no do background
 swaybg_command -
