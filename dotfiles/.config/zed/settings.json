@@ -6,26 +6,54 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "icon_theme": "Zed (Default)",
-  "features": {
-    // "edit_prediction_provider": "zed"
+  "cli_default_open_behavior": "new_window",
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Material Icon Theme"
   },
   "show_completion_documentation": false,
   //
   "base_keymap": "VSCode",
-  "theme": "Gruvbox Dark Hard",
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Gruvbox Dark Hard"
+  },
   //
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   //
   "ui_font_size": 16,
@@ -47,16 +75,16 @@
           "constantValues": true,
           "functionTypeParameters": true,
           "parameterNames": true,
-          "rangeVariableTypes": true
-        }
-      }
-    }
+          "rangeVariableTypes": true,
+        },
+      },
+    },
   },
   //
   "terminal": {
-    "dock": "left"
+    "dock": "left",
   },
   "project_panel": {
-    "dock": "right"
-  }
+    "dock": "right",
+  },
 }
