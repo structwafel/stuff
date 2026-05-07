@@ -38,3 +38,10 @@ export PATH="$PATH:$HOME/flutter/flutter/bin"
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# Disable pagers — keeps agentic tools (Claude Code, GitHub Copilot, etc.)
+# from hanging on `gh pr view`, `git log`, `systemctl status`, `man`, etc.
+export PAGER=cat
+export GIT_PAGER=cat
+export GH_PAGER=cat
+export SYSTEMD_PAGER=cat
