@@ -7,11 +7,12 @@
 set $env:QT_QPA_PLATFORMTHEME qt5ct
 set $env:CARGO_TARGET_DIR /tmp/cargo-target
 
-set $env:SDL_VIDEODRIVER wayland,11
+set $env:SDL_VIDEODRIVER wayland,x11
 set $env:_JAVA_AWT_WM_NONREPARENTING 1
 set $env:QT_QPA_PLATFORM wayland
 set $env:XDG_CURRENT_DESKTOP sway
-set $env:XDP_SESSION_DEKSTOP sway
+set $env:XDG_SESSION_DESKTOP sway
+set $env:XDG_SESSION_TYPE wayland
 set $env:XCURSOR_THEME Adwaita
 set $env:FREETYPE_PROPERTIES truetype:interpreter-version=40
 
@@ -115,6 +116,12 @@ hide_edge_borders --i3 smart
 # Changing audio
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Changing brightness
 bindsym XF86MonBrightnessUp exec /home/lgx/.config/sway/scripts/brightness.sh up

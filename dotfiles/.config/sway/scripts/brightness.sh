@@ -17,12 +17,16 @@ fi
 
 # Read the current brightness
 current_brightness=$(cat "$BRIGHTNESS_FILE")
+# Default to DEFAULT_BRIGHTNESS if file was empty
+if [ -z "$current_brightness" ]; then
+    current_brightness=$DEFAULT_BRIGHTNESS
+fi
 
 # Determine step size based on current brightness
 # Use smaller steps at lower brightness levels
-if [ $current_brightness -le 10 ]; then
+if [ "$current_brightness" -le 10 ]; then
     step_size=1
-elif [ $current_brightness -le 30 ]; then
+elif [ "$current_brightness" -le 30 ]; then
     step_size=5
 else
     step_size=$STEP
@@ -36,9 +40,9 @@ elif [ "$1" == "down" ]; then
 fi
 
 # Limit the brightness values to between MIN_BRIGHTNESS and 100
-if [ $new_brightness -gt 100 ]; then
+if [ "$new_brightness" -gt 100 ]; then
     new_brightness=100
-elif [ $new_brightness -lt $MIN_BRIGHTNESS ]; then
+elif [ "$new_brightness" -lt $MIN_BRIGHTNESS ]; then
     new_brightness=$MIN_BRIGHTNESS
 fi
 

@@ -32,7 +32,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 # output settings for this device
 output "eDP-1" {
     scale 1.5
-    scale_filter nearest
+    # Keep fractional scaling for the laptop panel, but avoid nearest-neighbor
+    # filtering because it makes XWayland apps look harsher than necessary.
 }
 
 # aggressive swayidle only on laptop
