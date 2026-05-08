@@ -42,6 +42,7 @@ source  $HOME/.zsh_keybindings
 FPATH="$HOME/.docker/completions:$FPATH"
 
 fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zsh/completion $fpath)
 # Load zsh completion.
 autoload -Uz compinit
 compinit -C
