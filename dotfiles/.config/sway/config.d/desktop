@@ -10,9 +10,9 @@ bar {
         inactive_workspace #323232FF #323232FF #5c5c5c    
     }
 
-    hidden_state hide
-    mode hide
-    modifier Mod4
+    # hidden_state hide
+    # mode hide
+    # modifier Mod4
 }
 
 
