@@ -62,6 +62,9 @@ programs=(
   "helix"
   "taplo-cli"
   "rust-analyzer"
+  # fonts (referenced by ~/.config/fontconfig/fonts.conf)
+  "ttf-noto-nerd"
+  "ttf-dejavu-nerd"
 )
 
 # filter out installed programs

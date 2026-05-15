@@ -7,7 +7,7 @@ HOSTNAME=$(cat /etc/hostname)
 rm -f ~/.config/sway/generated-extra-config
 
 # Create the appropriate configuration based on hostname
-if [[ "$HOSTNAME" == "archlinuxpro9" ]]; then
+if [[ "$HOSTNAME" == "cachyos-x8664" ]]; then
     # Laptop configuration - copy content
     cat ~/stuff/dotfiles/.config/sway/config.d/yogapro > ~/.config/sway/generated-extra-config
 elif [[ "$HOSTNAME" == "archswayhome" ]]; then
