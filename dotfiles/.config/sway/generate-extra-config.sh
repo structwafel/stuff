@@ -10,7 +10,7 @@ rm -f ~/.config/sway/generated-extra-config
 if [[ "$HOSTNAME" == "cachyos-x8664" ]]; then
     # Laptop configuration - copy content
     cat ~/stuff/dotfiles/.config/sway/config.d/yogapro > ~/.config/sway/generated-extra-config
-elif [[ "$HOSTNAME" == "archswayhome" ]]; then
+elif [[ "$HOSTNAME" == "cachyos-desktop" ]]; then
     # Desktop configuration - copy content
     cat ~/stuff/dotfiles/.config/sway/config.d/desktop > ~/.config/sway/generated-extra-config
 elif [[ "$HOSTNAME" == "ubuntumtime" ]]; then
