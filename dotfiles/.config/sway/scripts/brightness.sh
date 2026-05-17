@@ -37,6 +37,11 @@ if [ "$1" == "up" ]; then
     new_brightness=$((current_brightness + step_size))
 elif [ "$1" == "down" ]; then
     new_brightness=$((current_brightness - step_size))
+elif [[ "$1" =~ ^[0-9]+$ ]]; then
+    new_brightness=$1
+else
+    echo "Usage: $0 {up|down|<number 1-100>}" >&2
+    exit 1
 fi
 
 # Limit the brightness values to between MIN_BRIGHTNESS and 100
@@ -49,7 +54,7 @@ fi
 name=$(uname -n)
 
 # brightnessctl doesn't work on dumb monitors
-if [ "$name" = "archswayhome" ]; then
+if [ "$name" = "cachyos-desktop" ]; then
     # brightness $new_brightness
     # Set the new brightness using gbmonctl
     sudo ~/go/bin/gbmonctl -prop brightness -val "$new_brightness"
