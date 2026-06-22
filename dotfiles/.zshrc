@@ -73,14 +73,7 @@ fi
 
 
 # aliases
-
-#work
-mtimereset() {
-    docker kill $(docker ps -q)
-    make dev
-    make db-restore-e2e
-    docker compose restart api
-}
+alias cc="claude"
 
 # if kitty is terminal, use kitty +kitten ssh
 if [ "$TERM" = "xterm-kitty" ]; then
