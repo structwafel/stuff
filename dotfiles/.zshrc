@@ -75,6 +75,17 @@ fi
 # aliases
 alias cc="claude"
 
+
+mt() {
+    make -C ~/mtime/main wt-create "$1" || return
+    # worktree.sh puts the tree at ~/mtime/<name>, where <name> is the branch
+    # with its leading owner/ segment stripped and slugified (see slugify_name).
+    local name="${1#*/}"
+    name="$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9-' '-')"
+    cd ~/mtime/"$name"
+}
+
+
 # if kitty is terminal, use kitty +kitten ssh
 if [ "$TERM" = "xterm-kitty" ]; then
     alias ssh="kitten ssh"
@@ -129,17 +140,17 @@ alias ......="cd ../../../../.."
 
 
 # Eza
-alias l="eza -l --icons --git -a --hyperlink"
-alias lt="eza --tree --level=2 --long --icons --git --hyperlink"
-alias ltree="eza --tree --level=2  --icons --git --hyperlink"
+alias l="eza -l --icons --git -a --hyperlink=always"
+alias lt="eza --tree --level=2 --long --icons --git --hyperlink=always"
+alias ltree="eza --tree --level=2  --icons --git --hyperlink=always"
 
 alias cat=bat
 
 alias cr="clear"
 # such that ctrl+shift+p y works in kitty
-alias ls="eza --hyperlink"
-alias ll="eza -l --hyperlink"
-alias lll="eza -la --hyperlink"
+alias ls="eza --hyperlink=always"
+alias ll="eza -l --hyperlink=always"
+alias lll="eza -la --hyperlink=always"
 
 # nix
 alias ns="nix-shell"
@@ -240,3 +251,6 @@ eval "$(atuin init zsh)"
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/tmp/claude-1000/-home-lgx-mtime-fix-stress-test/0e21c81b-49d8-4502-bd67-902b078b67b4/scratchpad/bun1314/_bun" ] && source "/tmp/claude-1000/-home-lgx-mtime-fix-stress-test/0e21c81b-49d8-4502-bd67-902b078b67b4/scratchpad/bun1314/_bun"

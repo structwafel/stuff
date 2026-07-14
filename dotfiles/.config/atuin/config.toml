@@ -2,3 +2,6 @@ style = "compact"
 enter_accept = true
 
 sync_address = "https://atuin.structwafel.dev"
+
+[ai]
+enabled = false
