@@ -3,8 +3,23 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.font = wezterm.font 'NotoMono Nerd Font'
-config.color_scheme = 'Gruvbox dark, hard (base16)'
+config.font_size = 12.0
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+config.audible_bell = 'Disabled'
+
+-- Gruvbox dark, hard (base16, saturated) — shared canonical palette
+-- (matches foot/kitty/ghostty/alacritty exactly)
+config.colors = {
+  foreground = '#ebdbb2',
+  background = '#1d2021',
+  cursor_bg = '#bdae93',
+  cursor_fg = '#665c54',
+  cursor_border = '#bdae93',
+  selection_fg = '#ebdbb2',
+  selection_bg = '#d65d0e',
+  ansi = { '#282828', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2' },
+  brights = { '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#fbf1c7' },
+}
 
 -- Platform-specific settings for tiling window managers
 if wezterm.target_triple:find("darwin") then

@@ -1,0 +1,39 @@
+# Unified terminal config — see also: foot, kitty, wezterm, alacritty
+# Font: NotoMono Nerd Font 12 · Theme: Gruvbox dark hard (base16) · pad 0
+
+font-family = NotoMono Nerd Font
+font-size = 12
+
+window-padding-x = 0
+window-padding-y = 0
+window-decoration = none
+confirm-close-surface = false
+
+# Gruvbox dark, hard (base16, saturated) — shared canonical palette
+background = 1d2021
+foreground = ebdbb2
+selection-background = d65d0e
+selection-foreground = ebdbb2
+cursor-color = bdae93
+cursor-text = 665c54
+
+palette = 0=#282828
+palette = 1=#fb4934
+palette = 2=#b8bb26
+palette = 3=#fabd2f
+palette = 4=#83a598
+palette = 5=#d3869b
+palette = 6=#8ec07c
+palette = 7=#ebdbb2
+palette = 8=#928374
+palette = 9=#fb4934
+palette = 10=#b8bb26
+palette = 11=#fabd2f
+palette = 12=#83a598
+palette = 13=#d3869b
+palette = 14=#8ec07c
+palette = 15=#fbf1c7
+
+# Ctrl+V pastes everywhere (Ctrl+Shift+C copies; no "smart Ctrl+C")
+keybind = ctrl+v=paste_from_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
