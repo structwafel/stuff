@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# battery — control Lenovo conservation mode (caps charge at ~60%) on the Yoga Pro 7.
+# battery — control Lenovo conservation mode (caps charge at ~80%) on the Yoga Pro 7.
 # Wraps the battery-conservation.service systemd unit so behavior stays consistent.
 set -euo pipefail
 
@@ -9,12 +9,12 @@ BAT=/sys/class/power_supply/BAT0
 
 usage() {
   cat <<'EOF'
-battery — Lenovo conservation mode (caps charge ~60%)
+battery — Lenovo conservation mode (caps charge ~80%)
 
 usage: battery <command>
 
   status          Show charge %, charging state, and cap status   (default, no sudo)
-  cap | on        Cap charging at ~60% now                         (sudo)
+  cap | on        Cap charging at ~80% now                         (sudo)
   full | off      Allow charging to 100% now (until next reboot)   (sudo)
   disable         Turn cap off AND stop it re-arming on boot        (sudo)
   enable          Turn cap on AND re-arm it on every boot           (sudo)
@@ -42,12 +42,12 @@ status() {
   enabled=$(systemctl is-enabled "$UNIT" 2>/dev/null || echo unknown)
   printf 'charge:    %s%%\n' "$pct"
   printf 'state:     %s\n' "$stat"
-  printf 'cap ~60%%:  %s (on boot: %s)\n' "$cap" "$enabled"
+  printf 'cap ~80%%:  %s (on boot: %s)\n' "$cap" "$enabled"
 }
 
 case "${1:-status}" in
   status|"")     status ;;
-  cap|on)        sudo systemctl start "$UNIT" && echo "capped at ~60%." ;;
+  cap|on)        sudo systemctl start "$UNIT" && echo "capped at ~80%." ;;
   full|off)      sudo systemctl stop "$UNIT"  && echo "charging to 100% (until reboot)." ;;
   enable)        sudo systemctl enable --now "$UNIT"  && echo "cap on + will re-arm on boot." ;;
   disable)       sudo systemctl disable --now "$UNIT" && echo "cap off + won't re-arm on boot." ;;
