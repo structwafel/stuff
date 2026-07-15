@@ -41,11 +41,9 @@ source  $HOME/.zsh_keybindings
 # docker completions
 FPATH="$HOME/.docker/completions:$FPATH"
 
-fpath=(~/.zsh/completions $fpath)
-fpath=(~/.zsh/completion $fpath)
 # Load zsh completion.
 autoload -Uz compinit
-compinit -C
+compinit
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 zstyle ':completion:*:*:just:*' file-patterns ''
@@ -53,6 +51,11 @@ zstyle ':completion:*:*:just:*' file-patterns ''
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*:make:*' tag-order targets
+# interactive, arrow-navigable completion menu
+zstyle ':completion:*' menu select
+# group matches and show section headers + descriptions
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
 
 # Auto fix small errors
 setopt nocaseglob # ignore case
