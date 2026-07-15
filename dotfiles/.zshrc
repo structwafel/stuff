@@ -257,3 +257,12 @@ eval "$(atuin init zsh)"
 
 # bun completions
 [ -s "/tmp/claude-1000/-home-lgx-mtime-fix-stress-test/0e21c81b-49d8-4502-bd67-902b078b67b4/scratchpad/bun1314/_bun" ] && source "/tmp/claude-1000/-home-lgx-mtime-fix-stress-test/0e21c81b-49d8-4502-bd67-902b078b67b4/scratchpad/bun1314/_bun"
+
+# herdr panes inherit the daemon's env, which lacks the desktop display vars;
+# without them wl-paste/xclip fail and Claude Code image paste (Ctrl+V) breaks.
+if [[ -n $HERDR_ENV && -z $WAYLAND_DISPLAY ]]; then
+  _wl=(/run/user/$UID/wayland-<->(N))
+  (( $#_wl )) && export WAYLAND_DISPLAY=${_wl[1]:t}
+  [[ -z $DISPLAY && -S /tmp/.X11-unix/X0 ]] && export DISPLAY=:0
+  unset _wl
+fi
