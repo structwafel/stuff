@@ -33,10 +33,12 @@ exec --no-startup-id blueman-applet
 # for_window [app_id="flaqmeshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 # exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-set $satty satty -f - --initial-tool=arrow --copy-command=wl-copy --actions-on-escape="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications --fullscreen
+set $satty satty -f - --initial-tool=arrow --copy-command=/home/lgx/.local/bin/satty-copy --actions-on-escape="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications --fullscreen
 
 # bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
 bindsym Print exec grim -t ppm - | $satty
+# Direct whole-screen PNG copy, useful when no annotation is needed.
+bindsym Shift+Print exec grim -t png - | wl-copy --type image/png
 bindsym XF86Launch2 exec grim -t ppm - | $satty
 bindsym Sys_Req exec grim -t ppm - | $satty
 
