@@ -1,0 +1,22 @@
+#compdef just
+# Custom (not the stock `just --completions zsh` stub): complete recipe names at
+# the first argument only. Everything after a recipe — chained recipes, recipe
+# args, file paths — completes to nothing on purpose.
+# Revert with: just --completions zsh > ~/stuff/dotfiles/.zsh/completions/_just
+_just() {
+  # word 1 is `just`; only offer completions for the first recipe (CURRENT == 2).
+  (( CURRENT > 2 )) && return 0
+
+  local _CLAP_COMPLETE_INDEX=$(( CURRENT - 1 ))
+  local _CLAP_IFS=$'\n'
+  local completions=("${(@f)$( \
+    _CLAP_IFS="$_CLAP_IFS" \
+    _CLAP_COMPLETE_INDEX="$_CLAP_COMPLETE_INDEX" \
+    JUST_COMPLETE="zsh" \
+    just -- "${words[@]}" 2>/dev/null \
+  )}")
+
+  [[ -n $completions ]] && _describe -V 'recipes' completions
+  return 0
+}
+compdef _just just
