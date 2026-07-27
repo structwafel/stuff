@@ -95,7 +95,10 @@ for_window [class="stremio"] inhibit_idle fullscreen
 bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to ydotool type --key-delay 0 --key-hold 0 --file - &)"
 
 # Clipboard manager
-exec --no-startup-id wl-paste --watch cliphist store
+# Two watchers on purpose: an untyped `wl-paste --watch` only fires for text
+# selections, so screenshots never reach the history without the image one.
+exec --no-startup-id wl-paste --type text --watch cliphist store
+exec --no-startup-id wl-paste --type image --watch cliphist store
 bindsym $mod+c exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
 # Testing Gauntlet

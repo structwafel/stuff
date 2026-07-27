@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# satty-copy — clipboard sink for satty's --copy-command.
+#
+# satty pipes the annotated screenshot to this command's stdin as PNG bytes.
+# Plain `wl-copy` reading from stdin has nothing to infer a MIME type from and
+# ends up offering the bytes as text/plain, so image-aware consumers (herdr,
+# Claude Code, Codex, browsers) see no image on the clipboard and paste nothing.
+# Forcing image/png is the whole job.
+set -euo pipefail
+
+exec wl-copy --type image/png
