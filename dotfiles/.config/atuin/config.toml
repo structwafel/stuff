@@ -5,3 +5,8 @@ sync_address = "https://atuin.structwafel.dev"
 
 [ai]
 enabled = false
+
+
+[daemon]
+enabled = true
+autostart = true
