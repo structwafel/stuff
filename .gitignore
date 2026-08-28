@@ -7,3 +7,20 @@ dotfiles/.config/sway/outputs
 dotfiles/.config/sway/workspaces
 
 dotfiles/.config/nvim/lazy-lock.json
+
+# herdr runtime state. Only config.toml is worth versioning -- the rest is
+# regenerated on every run, and plugins/ is a 327M third-party checkout with
+# its own .git. plugins.json/.plugins.lock embed absolute /home/lgx paths, so
+# they are machine-specific rather than configuration.
+dotfiles/.config/herdr/*.log
+dotfiles/.config/herdr/*.sock
+dotfiles/.config/herdr/session.json
+dotfiles/.config/herdr/sessions/
+dotfiles/.config/herdr/release-notes.json
+dotfiles/.config/herdr/plugins.json
+dotfiles/.config/herdr/.plugins.lock
+dotfiles/.config/herdr/plugins/
+
+# binaries dropped into .local/bin by other installers, not dotfiles content
+dotfiles/.local/bin/neo
+dotfiles/.local/bin/origin

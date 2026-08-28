@@ -260,9 +260,16 @@ eval "$(atuin init zsh)"
 
 # herdr panes inherit the daemon's env, which lacks the desktop display vars;
 # without them wl-paste/xclip fail and Claude Code image paste (Ctrl+V) breaks.
-if [[ -n $HERDR_ENV && -z $WAYLAND_DISPLAY ]]; then
-  _wl=(/run/user/$UID/wayland-<->(N))
-  (( $#_wl )) && export WAYLAND_DISPLAY=${_wl[1]:t}
+# XDG_RUNTIME_DIR matters as much as WAYLAND_DISPLAY: libwayland resolves the
+# socket as $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY, so a pane that has only the
+# latter still dies with "XDG_RUNTIME_DIR is invalid or not set" and the paste
+# silently does nothing. Repair each var on its own -- a daemon can drop either.
+if [[ -n $HERDR_ENV ]]; then
+  [[ -z $XDG_RUNTIME_DIR && -d /run/user/$UID ]] && export XDG_RUNTIME_DIR=/run/user/$UID
+  if [[ -z $WAYLAND_DISPLAY ]]; then
+    _wl=(${XDG_RUNTIME_DIR:-/run/user/$UID}/wayland-<->(N))
+    (( $#_wl )) && export WAYLAND_DISPLAY=${_wl[1]:t}
+    unset _wl
+  fi
   [[ -z $DISPLAY && -S /tmp/.X11-unix/X0 ]] && export DISPLAY=:0
-  unset _wl
 fi
