@@ -9,6 +9,12 @@ export ELECTRON_OZONE_PLATFORM_HINT=wayland
 # so setting this manually 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+# /etc/locale.conf only reaches login shells (/etc/profile.d/locale.sh) and
+# systemd units, and herdr panes are neither — tailscale ssh doesn't use pam
+# either, so /etc/environment can't fill the gap. Without this btop refuses to
+# start ("No UTF-8 locale detected!") because the locale falls back to C.
+export LANG=en_GB.UTF-8
+
 #add .local/bin to path
 export PATH=$HOME/.local/bin:$PATH
 

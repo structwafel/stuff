@@ -16,7 +16,7 @@ elif [[ "$HOSTNAME" == "desktop" ]]; then
 elif [[ "$HOSTNAME" == "ubuntumtime" ]]; then
     # Work laptop (ThinkPad L14) configuration
     cat ~/stuff/dotfiles/.config/sway/config.d/ubuntumtime > ~/.config/sway/generated-extra-config
-elif [[ "$HOSTNAME" == "cachyos-x8664" ]]; then
+elif [[ "$HOSTNAME" == "desktop-work" ]]; then
     # Work desktop (Z power shit) configuration
     cat ~/stuff/dotfiles/.config/sway/config.d/cachyos-x8664 > ~/.config/sway/generated-extra-config
 fi

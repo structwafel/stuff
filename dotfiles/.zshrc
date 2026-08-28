@@ -273,3 +273,8 @@ if [[ -n $HERDR_ENV ]]; then
   fi
   [[ -z $DISPLAY && -S /tmp/.X11-unix/X0 ]] && export DISPLAY=:0
 fi
+
+. "/home/lgx/.local/share/neosource/env"
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"
