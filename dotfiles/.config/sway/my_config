@@ -163,6 +163,8 @@ exec_always nm-applet
 
 # output "DP-1" allow_tearing yes
 output "Dell Inc. DELL P2720DC 8D4SK53" subpixel rgb
+# Odyssey G9: RKL-S combo PHY caps DP at HBR2, so 5120x1440@120 is out of reach; 85 Hz is the max at 8bpc
+output "Samsung Electric Company LS49C95xU HNTX701361" mode --custom 5120x1440@85Hz
 
 #protonvpn
 # exec_always "protonvpn-app"
@@ -217,3 +219,9 @@ swaybg_command -
 exec_always --no-startup-id ~/.config/sway/generate-extra-config.sh
 # and include it
 include ~/.config/sway/generated-extra-config
+
+
+### Wide-display tweaks
+#
+# Rotate the display, to test whether it is height you are actually missing
+bindsym $mod+Control+p exec ~/.config/sway/scripts/toggle-portrait.sh
