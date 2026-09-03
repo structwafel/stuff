@@ -95,11 +95,29 @@ for_window [class="stremio"] inhibit_idle fullscreen
 bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to ydotool type --key-delay 0 --key-hold 0 --file - &)"
 
 # Clipboard manager
+#
+# On Wayland the clipboard is served live by the source app, so closing Firefox
+# or satty drops the selection entirely. wl-clip-persist takes ownership of it
+# so the content survives the source app exiting. It must start before the
+# cliphist watchers so it owns selections from the first one onward.
+#
+# The regex skips password-manager clipboard entries, which should stay
+# ephemeral rather than being made permanent.
+exec --no-startup-id wl-clip-persist --clipboard regular --all-mime-type-regex '^(?!x-kde-passwordManagerHint).*'
+
 # Two watchers on purpose: an untyped `wl-paste --watch` only fires for text
 # selections, so screenshots never reach the history without the image one.
 exec --no-startup-id wl-paste --type text --watch cliphist store
 exec --no-startup-id wl-paste --type image --watch cliphist store
-bindsym $mod+c exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
+
+# Wrapped in a script: the plain pipeline wiped the clipboard whenever the
+# picker was cancelled (wofi exits empty -> cliphist decode fails -> wl-copy
+# still runs and sets an empty selection), and restored images as text/plain.
+bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
+
+# Reopen any image from clipboard history in satty. satty takes -f <file>, so
+# annotating an old screenshot needs no tooling beyond what is already here.
+bindsym $mod+Shift+a exec ~/.config/sway/scripts/clipboard-annotate.sh
 
 # Testing Gauntlet
 bindsym $mod+m exec gauntlet
