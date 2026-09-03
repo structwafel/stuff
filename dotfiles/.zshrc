@@ -278,3 +278,5 @@ fi
 
 # Scaleway CLI autocomplete initialization.
 eval "$(scw autocomplete script shell=zsh)"
+
+export TMPDIR=$HOME/.cache/tmp
