@@ -53,6 +53,7 @@ programs=(
   "zoxide"
   "less"
   "cliphist"
+  "wl-clip-persist" # keeps the clipboard alive after the source app (satty, firefox) exits
   "swaylock-effects"
   "blueman"
   "bluez"
