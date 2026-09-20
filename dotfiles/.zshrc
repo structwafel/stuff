@@ -193,14 +193,6 @@ brightness() {
 take () {
     mkdir -p "$1" && cd "$1"
 }
-# json things
-jj () {
-    cd "${1:-.}/$(find . -maxdepth 5 -type d -name .git | sed 's|/.git$||' | fzf --preview 'tree -L 2 ./{}')"
-}
-jjp () {
-    cd "${1:-.}/$(find . -maxdepth 5 -type d -name .git -not -path '*/.cache/*' | sed 's|/.git$||' | fzf --preview 'tree -L 2 ./{}')"
-}
-
 
 # change java version to 11 in arch for this session
 setjava(){
@@ -273,8 +265,6 @@ if [[ -n $HERDR_ENV ]]; then
   fi
   [[ -z $DISPLAY && -S /tmp/.X11-unix/X0 ]] && export DISPLAY=:0
 fi
-
-. "/home/lgx/.local/share/neosource/env"
 
 # Scaleway CLI autocomplete initialization.
 eval "$(scw autocomplete script shell=zsh)"
