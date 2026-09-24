@@ -30,23 +30,29 @@ exec --no-startup-id mako
 exec --no-startup-id blueman-applet
 
 # Screenshot things
-# for_window [app_id="flaqmeshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
-# exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-# exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-set $satty satty -f - --initial-tool=arrow --copy-command=/home/lgx/.local/bin/satty-copy --actions-on-escape="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications --fullscreen --resize smart
+#
+# flameshot captures through the xdg Screenshot portal (xdg-desktop-portal-wlr
+# on sway). Since v14 the editor covers a single monitor (with a picker first
+# when several are connected), sized to exactly that output. Qt can't position
+# windows on Wayland, so float it and fullscreen it onto the focused output;
+# fullscreen also covers the docked bar, which a plain move would leave the
+# window shifted below. Upstream's `move absolute position 0 0` rule predates
+# v14 and would pin it to the leftmost monitor instead.
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen enable
+# Keep the daemon resident so captures start instantly.
+exec --no-startup-id flameshot
 
-# bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
-bindsym Print exec grim -t ppm - | $satty
+bindsym Print exec flameshot gui --clipboard
 # Direct whole-screen PNG copy, useful when no annotation is needed.
 bindsym Shift+Print exec grim -t png - | wl-copy --type image/png
-bindsym XF86Launch2 exec grim -t ppm - | $satty
-bindsym Sys_Req exec grim -t ppm - | $satty
+bindsym XF86Launch2 exec flameshot gui --clipboard
+bindsym Sys_Req exec flameshot gui --clipboard
 
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
-    bindsym r exec swaymsg 'mode "default"' && grim -t ppm -g "$(slurp -d)" - | $satty
-    bindsym f exec swaymsg 'mode "default"' && grim -t ppm - | $satty
-    bindsym w exec swaymsg 'mode "default"' && swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -t ppm -g - - | $satty
+    bindsym r exec swaymsg 'mode "default"' && flameshot gui --clipboard
+    bindsym f exec swaymsg 'mode "default"' && flameshot full --clipboard
+    bindsym w exec swaymsg 'mode "default"' && ~/.config/sway/scripts/flameshot-window.sh
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -97,7 +103,7 @@ bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 
 # Clipboard manager
 #
 # On Wayland the clipboard is served live by the source app, so closing Firefox
-# or satty drops the selection entirely. wl-clip-persist takes ownership of it
+# or flameshot drops the selection entirely. wl-clip-persist takes ownership of it
 # so the content survives the source app exiting. It must start before the
 # cliphist watchers so it owns selections from the first one onward.
 #
@@ -114,10 +120,6 @@ exec --no-startup-id wl-paste --type image --watch cliphist store
 # picker was cancelled (wofi exits empty -> cliphist decode fails -> wl-copy
 # still runs and sets an empty selection), and restored images as text/plain.
 bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
-
-# Reopen any image from clipboard history in satty. satty takes -f <file>, so
-# annotating an old screenshot needs no tooling beyond what is already here.
-bindsym $mod+Shift+a exec ~/.config/sway/scripts/clipboard-annotate.sh
 
 # Testing Gauntlet
 bindsym $mod+m exec gauntlet

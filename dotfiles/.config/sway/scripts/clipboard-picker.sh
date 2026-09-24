@@ -9,7 +9,7 @@
 #      text/plain selection, destroying whatever was held.
 #   2. Images came back as text/plain. wl-copy reading from stdin has nothing
 #      to infer a MIME type from, so image-aware consumers (herdr, Claude Code,
-#      browsers) saw no image -- the same trap satty-copy documents.
+#      browsers) saw no image.
 set -euo pipefail
 
 # Listed separately from the picker: under `pipefail`, a picker that exits
