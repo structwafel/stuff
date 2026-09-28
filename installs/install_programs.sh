@@ -22,7 +22,7 @@ programs=(
   "xdg-desktop-portal"
   "xdg-desktop-portal-gnome"
   "xdg-desktop-portal-wlr"
-  "wl-clipboard"
+  # "wl-clipboard"
   "grim"
   "slurp"
   "fuzzel"
@@ -53,7 +53,7 @@ programs=(
   "zoxide"
   "less"
   "cliphist"
-  "wl-clip-persist" # keeps the clipboard alive after the source app (flameshot, firefox) exits
+  # "wl-clip-persist" # keeps the clipboard alive after the source app (flameshot, firefox) exits
   "swaylock-effects"
   "blueman"
   "bluez"
