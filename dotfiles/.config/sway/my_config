@@ -121,9 +121,6 @@ exec --no-startup-id wl-paste --type image --watch cliphist store
 # still runs and sets an empty selection), and restored images as text/plain.
 bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
 
-# Testing Gauntlet
-bindsym $mod+m exec gauntlet
-
 # Power menu
 bindsym $mod+Shift+e exec ~/.config/sway/scripts/power-menu.sh
 
@@ -227,3 +224,6 @@ include ~/.config/sway/generated-extra-config
 #
 # Rotate the display, to test whether it is height you are actually missing
 bindsym $mod+Control+p exec ~/.config/sway/scripts/toggle-portrait.sh
+
+exec_always reachd
+bindsym $mod+m exec reach clip
