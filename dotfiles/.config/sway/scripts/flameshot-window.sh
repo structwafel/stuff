@@ -13,4 +13,4 @@ region=$(swaymsg -t get_tree | jq -r '
     | ($o.scale // 1) as $s
     | "\(($w.width * $s) | round)x\(($w.height * $s) | round)+\((($w.x - $o.rect.x) * $s) | round)+\((($w.y - $o.rect.y) * $s) | round)"')
 
-exec flameshot gui --clipboard ${region:+--region "$region"}
+exec flameshot gui ${region:+--region "$region"}

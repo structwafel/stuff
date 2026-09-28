@@ -42,15 +42,15 @@ for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen enab
 # Keep the daemon resident so captures start instantly.
 exec --no-startup-id flameshot
 
-bindsym Print exec flameshot gui --clipboard
+bindsym Print exec flameshot gui
 # Direct whole-screen PNG copy, useful when no annotation is needed.
 bindsym Shift+Print exec grim -t png - | wl-copy --type image/png
-bindsym XF86Launch2 exec flameshot gui --clipboard
-bindsym Sys_Req exec flameshot gui --clipboard
+bindsym XF86Launch2 exec flameshot gui
+bindsym Sys_Req exec flameshot gui
 
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
-    bindsym r exec swaymsg 'mode "default"' && flameshot gui --clipboard
+    bindsym r exec swaymsg 'mode "default"' && flameshot gui
     bindsym f exec swaymsg 'mode "default"' && flameshot full --clipboard
     bindsym w exec swaymsg 'mode "default"' && ~/.config/sway/scripts/flameshot-window.sh
 
@@ -120,9 +120,6 @@ exec --no-startup-id wl-paste --type image --watch cliphist store
 # picker was cancelled (wofi exits empty -> cliphist decode fails -> wl-copy
 # still runs and sets an empty selection), and restored images as text/plain.
 bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
-
-# Testing Gauntlet
-bindsym $mod+m exec gauntlet
 
 # Power menu
 bindsym $mod+Shift+e exec ~/.config/sway/scripts/power-menu.sh
