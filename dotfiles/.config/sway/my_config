@@ -42,15 +42,19 @@ for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen enab
 # Keep the daemon resident so captures start instantly.
 exec --no-startup-id flameshot
 
-bindsym Print exec flameshot gui --clipboard
+# `gui` is deliberately launched without --clipboard: any preset task makes
+# flameshot drop the Copy/Save buttons *and* their shortcuts, leaving Ctrl+C
+# dead and Enter as the only way to finish. Without it the real Copy tool is
+# back, so Ctrl+C copies and closes the editor (Ctrl+S saves, Esc cancels).
+bindsym Print exec flameshot gui
 # Direct whole-screen PNG copy, useful when no annotation is needed.
 bindsym Shift+Print exec grim -t png - | wl-copy --type image/png
-bindsym XF86Launch2 exec flameshot gui --clipboard
-bindsym Sys_Req exec flameshot gui --clipboard
+bindsym XF86Launch2 exec flameshot gui
+bindsym Sys_Req exec flameshot gui
 
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
-    bindsym r exec swaymsg 'mode "default"' && flameshot gui --clipboard
+    bindsym r exec swaymsg 'mode "default"' && flameshot gui
     bindsym f exec swaymsg 'mode "default"' && flameshot full --clipboard
     bindsym w exec swaymsg 'mode "default"' && ~/.config/sway/scripts/flameshot-window.sh
 
