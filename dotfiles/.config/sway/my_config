@@ -123,7 +123,7 @@ bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 
 # Wrapped in a script: the plain pipeline wiped the clipboard whenever the
 # picker was cancelled (wofi exits empty -> cliphist decode fails -> wl-copy
 # still runs and sets an empty selection), and restored images as text/plain.
-bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
+# bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
 
 # Power menu
 bindsym $mod+Shift+e exec ~/.config/sway/scripts/power-menu.sh
@@ -230,4 +230,4 @@ include ~/.config/sway/generated-extra-config
 bindsym $mod+Control+p exec ~/.config/sway/scripts/toggle-portrait.sh
 
 exec_always reachd
-bindsym $mod+m exec reach clip
+bindsym $mod+c exec reach clip
