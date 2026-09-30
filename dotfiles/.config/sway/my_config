@@ -51,6 +51,7 @@ bindsym Sys_Req exec flameshot gui
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
     bindsym r exec swaymsg 'mode "default"' && flameshot gui
+    bindsym r exec swaymsg 'mode "default"' && flameshot gui
     bindsym f exec swaymsg 'mode "default"' && flameshot full --clipboard
     bindsym w exec swaymsg 'mode "default"' && ~/.config/sway/scripts/flameshot-window.sh
 
@@ -109,17 +110,17 @@ bindsym $mod+r exec sh -c "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 
 #
 # The regex skips password-manager clipboard entries, which should stay
 # ephemeral rather than being made permanent.
-exec --no-startup-id wl-clip-persist --clipboard regular --all-mime-type-regex '^(?!x-kde-passwordManagerHint).*'
+# exec --no-startup-id wl-clip-persist --clipboard regular --all-mime-type-regex '^(?!x-kde-passwordManagerHint).*'
 
 # Two watchers on purpose: an untyped `wl-paste --watch` only fires for text
 # selections, so screenshots never reach the history without the image one.
-exec --no-startup-id wl-paste --type text --watch cliphist store
-exec --no-startup-id wl-paste --type image --watch cliphist store
+# exec --no-startup-id wl-paste --type text --watch cliphist store
+# exec --no-startup-id wl-paste --type image --watch cliphist store
 
 # Wrapped in a script: the plain pipeline wiped the clipboard whenever the
 # picker was cancelled (wofi exits empty -> cliphist decode fails -> wl-copy
 # still runs and sets an empty selection), and restored images as text/plain.
-bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
+# bindsym $mod+c exec ~/.config/sway/scripts/clipboard-picker.sh
 
 # Power menu
 bindsym $mod+Shift+e exec ~/.config/sway/scripts/power-menu.sh
@@ -224,3 +225,6 @@ include ~/.config/sway/generated-extra-config
 #
 # Rotate the display, to test whether it is height you are actually missing
 bindsym $mod+Control+p exec ~/.config/sway/scripts/toggle-portrait.sh
+
+exec_always reachd
+bindsym $mod+c exec reach clip
