@@ -22,5 +22,5 @@ dotfiles/.config/herdr/.plugins.lock
 dotfiles/.config/herdr/plugins/
 
 # binaries dropped into .local/bin by other installers, not dotfiles content
-dotfiles/.local/bin/neo
-dotfiles/.local/bin/origin
+dotfiles/.local/bin/*
+!dotfiles/.local/bin/battery
