@@ -51,7 +51,6 @@ bindsym Sys_Req exec flameshot gui
 set $printscreen_mode 'printscreen (r:region, f:full, w:window)'
 mode $printscreen_mode {
     bindsym r exec swaymsg 'mode "default"' && flameshot gui
-    bindsym r exec swaymsg 'mode "default"' && flameshot gui
     bindsym f exec swaymsg 'mode "default"' && flameshot full --clipboard
     bindsym w exec swaymsg 'mode "default"' && ~/.config/sway/scripts/flameshot-window.sh
 
